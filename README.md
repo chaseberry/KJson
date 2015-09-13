@@ -3,6 +3,22 @@ A full Json implementation in Kotlin
 
 Version 0.0.1
 
+To download through Gradle include this in your repositories
+```Groovy
+maven {
+        url  "http://dl.bintray.com/chaseberry/maven" 
+    }
+```
+
+Then add the following to your dependencies
+```Groovy
+compile edu.csh.chase.kjson:kjson:0.0.1
+```
+
+I will be adding it to JCenter once I'm happy with everything, but for now it's in an early beta stage
+
+#Features
+
 Originally part of Sprint, a Rest Client designed for Kotlin I decided to rip this out and make it it's own separate library
 
 ```Kotlin
