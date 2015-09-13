@@ -1,6 +1,8 @@
 # KJson
 A full Json implementation in Kotlin
 
+Version 0.0.1
+
 Originally part of Sprint, a Rest Client designed for Kotlin I decided to rip this out and make it it's own separate library
 
 ```Kotlin
@@ -38,7 +40,17 @@ val key2 = obj.getInt("key2")// Using the example from above this would return n
 
 ```
 
-You can put Boolean?, Int?, Double?, String?, JsonObject?, JsonArray?, List<Any?>?, and Map<String, Any?>? into either an  array or object.
+All getter functions have two variations.
+
+```Kotlin
+
+get<Type>(key:String):Type?//Returns null if the value is not present, null, or cannot be cast to type
+
+get<Type>(key:String, default:Type):Type//Returns default if the value is not present, null, or cannot be cast to type
+
+```
+
+You can put a Boolean?, Int?, Double?, String?, JsonObject?, JsonArray?, List<Any?>?, and Map<String, Any?>? into either an  array or object.
 
 Both have support for forEach, iterators, and JsonArray has an indices val
 
@@ -60,3 +72,17 @@ Pulling the value out is as easy as
 val value = obj.traverse("key:key2")
 
 ```
+
+#Delegates
+
+JsonDelegates let you map vals/vars to keys in a JsonObject
+```Kotlin
+
+val key:String by JsonDelegates.objectVal(someJsonObject)
+
+var v:Int by JsonDelegates.objectVar(someJsonObject)
+
+```
+
+This will use the name as the key in the object, and changes to the key are updated into the JsonObject
+*This API is subject to change frequently*
