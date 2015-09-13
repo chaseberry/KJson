@@ -85,4 +85,5 @@ var v:Int by JsonDelegates.objectVar(someJsonObject)
 ```
 
 This will use the name as the key in the object, and changes to the key are updated into the JsonObject
+
 *This API is subject to change frequently*
