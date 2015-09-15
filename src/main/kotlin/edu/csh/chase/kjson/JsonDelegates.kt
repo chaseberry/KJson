@@ -1,6 +1,5 @@
 package edu.csh.chase.kjson
 
-import edu.csh.chase.kjson.JsonObject
 import kotlin.properties.ReadOnlyProperty
 import kotlin.properties.ReadWriteProperty
 
@@ -8,7 +7,7 @@ public object JsonDelegates {
 
     public fun<T> objectVal(jsonObject: JsonObject): JsonObjectVal<T> = JsonObjectVal(jsonObject)
 
-    open class JsonObjectVal<T : Any?>(protected val jsonObject: JsonObject) : ReadOnlyProperty<Any, T> {
+    private open class JsonObjectVal<T : Any?>(protected val jsonObject: JsonObject) : ReadOnlyProperty<Any, T> {
 
         override fun get(thisRef: Any, desc: PropertyMetadata): T {
             return jsonObject[desc.name] as T
@@ -31,7 +30,7 @@ public object JsonDelegates {
 
     private open class JsonObjectValNotNull<T : Any>(protected val jsonObject: JsonObject, val defaultValue: T) :
             ReadOnlyProperty<Any, T> {
-        
+
         override fun get(thisRef: Any, desc: PropertyMetadata): T {
             return jsonObject[desc.name, defaultValue] as T
         }
@@ -49,5 +48,36 @@ public object JsonDelegates {
         }
 
     }
+
+
+    private open class StringMVal(protected val `object`: JsonObject) : ReadOnlyProperty<Any, String?> {
+        override fun get(thisRef: Any, desc: PropertyMetadata): String? {
+            return `object`.getString(desc.name)
+        }
+    }
+
+    private class StringMVar(`object`: JsonObject) : StringMVal(`object`), ReadWriteProperty<Any, String?> {
+        override fun set(thisRef: Any, desc: PropertyMetadata, value: String?) {
+            `object`[desc.name] = value
+        }
+
+    }
+
+    private open class StringVal(protected val `object`: JsonObject, val default: String) : ReadOnlyProperty<Any, String> {
+        override fun get(thisRef: Any, desc: PropertyMetadata): String {
+            return `object`.getString(desc.name, default)
+        }
+    }
+
+    private class StringVar(`object`: JsonObject, default: String) : StringVal(`object`, default), ReadWriteProperty<Any, String> {
+        override fun set(thisRef: Any, desc: PropertyMetadata, value: String) {
+            `object`[desc.name] = value
+        }
+
+    }
+
+    public fun stringVal(`object`: JsonObject): StringMVal = StringMVal(`object`)
+
+    public fun stringVal(`object`: JsonObject, default: String): StringVal = StringVal(`object`, default)
 
 }
