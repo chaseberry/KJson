@@ -7,10 +7,10 @@ public object JsonDelegates {
 
     public fun<T> objectVal(jsonObject: JsonObject): JsonObjectVal<T> = JsonObjectVal(jsonObject)
 
-    private open class JsonObjectVal<T : Any?>(protected val jsonObject: JsonObject) : ReadOnlyProperty<Any, T> {
+    open class JsonObjectVal<T : Any?>(protected val jsonObject: JsonObject) : ReadOnlyProperty<Any, T> {
 
-        override fun get(thisRef: Any, desc: PropertyMetadata): T {
-            return jsonObject[desc.name] as T
+        override fun get(thisRef: Any, property: PropertyMetadata): T {
+            return jsonObject[property.name] as T
         }
 
     }
@@ -25,53 +25,53 @@ public object JsonDelegates {
 
     }
 
-    public fun <T>notNullObjectVal(jsonObject: JsonObject, defaultValue: T): JsonObjectValNotNull<T>
+    public fun <T : Any>notNullObjectVal(jsonObject: JsonObject, defaultValue: T): JsonObjectValNotNull<T>
             = JsonObjectValNotNull(jsonObject, defaultValue)
 
     private open class JsonObjectValNotNull<T : Any>(protected val jsonObject: JsonObject, val defaultValue: T) :
             ReadOnlyProperty<Any, T> {
 
-        override fun get(thisRef: Any, desc: PropertyMetadata): T {
-            return jsonObject[desc.name, defaultValue] as T
+        override fun get(thisRef: Any, property: PropertyMetadata): T {
+            return jsonObject[property.name, defaultValue] as T
         }
 
     }
 
-    public fun <T>notNullObjectVar(jsonObject: JsonObject, defaultValue: T): JsonObjectVarNotNull<T>
+    public fun <T : Any>notNullObjectVar(jsonObject: JsonObject, defaultValue: T): JsonObjectVarNotNull<T>
             = JsonObjectVarNotNull(jsonObject, defaultValue)
 
     private class JsonObjectVarNotNull<T : Any>(jsonObject: JsonObject, defaultValue: T) :
             JsonObjectValNotNull<T>(jsonObject, defaultValue), ReadWriteProperty<Any, T> {
 
-        override fun set(thisRef: Any, desc: PropertyMetadata, value: T) {
-            jsonObject[desc.name] = value
+        override fun set(thisRef: Any, property: PropertyMetadata, value: T) {
+            jsonObject[property.name] = value
         }
 
     }
 
 
-    private open class StringMVal(protected val `object`: JsonObject) : ReadOnlyProperty<Any, String?> {
-        override fun get(thisRef: Any, desc: PropertyMetadata): String? {
-            return `object`.getString(desc.name)
+    open class StringMVal(protected val `object`: JsonObject) : ReadOnlyProperty<Any, String?> {
+        override fun get(thisRef: Any, property: PropertyMetadata): String? {
+            return `object`.getString(property.name)
         }
     }
 
-    private class StringMVar(`object`: JsonObject) : StringMVal(`object`), ReadWriteProperty<Any, String?> {
-        override fun set(thisRef: Any, desc: PropertyMetadata, value: String?) {
-            `object`[desc.name] = value
+    class StringMVar(`object`: JsonObject) : StringMVal(`object`), ReadWriteProperty<Any, String?> {
+        override fun set(thisRef: Any, property: PropertyMetadata, value: String?) {
+            `object`[property.name] = value
         }
 
     }
 
-    private open class StringVal(protected val `object`: JsonObject, val default: String) : ReadOnlyProperty<Any, String> {
-        override fun get(thisRef: Any, desc: PropertyMetadata): String {
-            return `object`.getString(desc.name, default)
+    open class StringVal(protected val `object`: JsonObject, val default: String) : ReadOnlyProperty<Any, String> {
+        override fun get(thisRef: Any, property: PropertyMetadata): String {
+            return `object`.getString(property.name, default)
         }
     }
 
-    private class StringVar(`object`: JsonObject, default: String) : StringVal(`object`, default), ReadWriteProperty<Any, String> {
-        override fun set(thisRef: Any, desc: PropertyMetadata, value: String) {
-            `object`[desc.name] = value
+    class StringVar(`object`: JsonObject, default: String) : StringVal(`object`, default), ReadWriteProperty<Any, String> {
+        override fun set(thisRef: Any, property: PropertyMetadata, value: String) {
+            `object`[property.name] = value
         }
 
     }

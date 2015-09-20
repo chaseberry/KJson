@@ -10,7 +10,7 @@ import kotlin.test.assertTrue
 
 class JsonArrayTest() {
 
-    Test fun emptyJsonArrayTest() {
+    @Test fun emptyJsonArrayTest() {
         val array = JsonArray()
 
         assertEquals(0, array.size)
@@ -21,7 +21,7 @@ class JsonArrayTest() {
         assertEquals("[]", array.toString())
     }
 
-    Test fun jsonArrayFromStringTest() {
+    @Test fun jsonArrayFromStringTest() {
         val jsonArrayString = "[0,\"A String\",15.8, true, null]"
         try {
             val array = JsonArray(jsonArrayString)
@@ -34,11 +34,11 @@ class JsonArrayTest() {
             assertTrue(array.getBoolean(3, false))
             assertNull(array[4])
         } catch(invalidJson: JsonException) {
-            assert(false, "JsonArray failed to create")
+            assert(false) { "JsonArray failed to create" }
         }
     }
 
-    Test fun jsonArrayGetTest() {
+    @Test fun jsonArrayGetTest() {
         val array = JsonArray(*arrayOf<Any?>(0, "String", null, false, 15.687))
 
         assertEquals(5, array.size)
@@ -61,14 +61,14 @@ class JsonArrayTest() {
         assertEquals(15.687, array[4, 1.0] as Double)
     }
 
-    Test fun jsonArrayGetDefaultTest() {
+    @Test fun jsonArrayGetDefaultTest() {
         val array = JsonArray(arrayOf<Any?>(0, "String", null, false, 15.687))
 
         assertEquals(15, array[-1, 15])
         assertEquals("default", array[12, "default"])
     }
 
-    Test fun jsonArrayGetBooleanTest() {
+    @Test fun jsonArrayGetBooleanTest() {
         val array = JsonArray(*arrayOf<Any?>(true, false, null, "Not a Boolean"))
         assertEquals(4, array.size)
 
@@ -85,7 +85,7 @@ class JsonArrayTest() {
         assertTrue(array.getBoolean(3, true))
     }
 
-    Test fun jsonArrayGetIntTest() {
+    @Test fun jsonArrayGetIntTest() {
         val array = JsonArray(*arrayOf<Any?>(15, 0, null, 15.9, "A String"))
         assertEquals(5, array.size)
 

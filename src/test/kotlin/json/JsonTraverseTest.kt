@@ -8,7 +8,7 @@ import kotlin.test.assertNull
 
 class JsonTraverseTest {
 
-    Test fun traverseBaseObjectTest() {
+    @Test fun traverseBaseObjectTest() {
         val obj = JsonObject()
         obj["key"] = "value"
         obj["test"] = 15
@@ -20,7 +20,7 @@ class JsonTraverseTest {
         assertEquals("default", obj.traverse(compoundKey = "invalid", default = "default"))
     }
 
-    Test fun traverseBaseArrayTest() {
+    @Test fun traverseBaseArrayTest() {
         val arr = JsonArray("value", 15)
 
         assertEquals("value", arr.traverse("0"))
@@ -32,7 +32,7 @@ class JsonTraverseTest {
         assertEquals("default", arr.traverse(compoundKey = "-1", default = "default"))
     }
 
-    Test fun traverseJsonObjectTest() {
+    @Test fun traverseJsonObjectTest() {
         val obj = JsonObject().put("key", "value").put("test", 15)
         val secondObj = JsonObject().put("secondKey", "secondValue")
         obj["object"] = secondObj
@@ -41,7 +41,7 @@ class JsonTraverseTest {
         assertEquals("secondValue", obj.traverse("object:secondKey:invalidKey"))
     }
 
-    Test fun traverseJsonArrayTest() {
+    @Test fun traverseJsonArrayTest() {
         val arr = JsonArray("value", 15, JsonArray("secondValue", 16))
 
         assertEquals("secondValue", arr.traverse("2:0"))

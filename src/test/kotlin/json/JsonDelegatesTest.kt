@@ -8,7 +8,7 @@ import kotlin.test.assertNull
 
 class JsonDelegatesTest {
 
-    Test fun delegatesObjectVal() {
+    @Test fun delegatesObjectVal() {
         val obj = JsonObject(mapOf("key" to "value", "key2" to "value2"))
         val delegateTest = JsonDelegateObjectValTest(obj)
         assertEquals("value", delegateTest.key)
@@ -24,7 +24,7 @@ class JsonDelegatesTest {
 
     }
 
-    Test fun delegatesObjectVar() {
+    @Test fun delegatesObjectVar() {
         val obj = JsonObject(mapOf("key" to "value", "key2" to "value2"))
         val delegateObj = JsonDelegateObjectVarTest(obj)
         assertEquals("value", delegateObj.key)

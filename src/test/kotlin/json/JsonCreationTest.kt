@@ -8,12 +8,12 @@ import kotlin.test.assertEquals
 
 class JsonCreationTest {
 
-    Test fun testObjectCreationEmpty() {
+    @Test fun testObjectCreationEmpty() {
         val obj = JsonObject()
         assertEquals(obj, json ())
     }
 
-    Test fun testObjectCreation() {
+    @Test fun testObjectCreation() {
         val obj = JsonObject("key" to "value")
         assertEquals(obj,
                 json (
@@ -23,12 +23,12 @@ class JsonCreationTest {
     }
 
 
-    Test fun testArrayCreationEmpty() {
+    @Test fun testArrayCreationEmpty() {
         val arr = JsonArray()
         assertEquals(arr, json.get())
     }
 
-    Test fun testArrayCreation() {
+    @Test fun testArrayCreation() {
         val arr = JsonArray().put("value")
         assertEquals(arr, json[
                 "value"
