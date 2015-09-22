@@ -107,7 +107,7 @@ fun quote(string: String, w: Writer): Writer {
  */
 fun Writer.indent(indent: Int) = write("   " * indent)
 
-private fun getJsonValue(value: Any?, shouldIndent: Boolean = false, depth: Int = 1): String {
+fun getJsonValue(value: Any?, shouldIndent: Boolean = false, depth: Int = 1): String {
     return when (value) {
         null -> "null"
         is Collection<Any?> -> JsonArray(value.filter { it.isValidJsonType() }).toString(shouldIndent, depth)
