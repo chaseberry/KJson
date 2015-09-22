@@ -2,6 +2,7 @@ package json
 
 import edu.csh.chase.kjson.JsonArray
 import edu.csh.chase.kjson.JsonObject
+import edu.csh.chase.kjson.json
 import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
@@ -47,6 +48,23 @@ class JsonTraverseTest {
         assertEquals("secondValue", arr.traverse("2:0"))
         assertEquals("secondValue", arr.traverse("2:0:0"))
         assertNull(arr.traverse("invalidKey"))
+    }
+
+    @Test fun traverseMultiJsonObjectTest() {
+        val obj = json(
+                "key" to "value",
+                "k" to "v",
+                "k2" to "v2",
+                "obj" to json(
+                        "k3" to "v3",
+                        "k4" to "v4"
+                )
+        )
+        assertEquals("v3", obj.traverseMulti("y", "obj:k3"))
+        assertEquals("v3", obj.traverseMulti(*arrayOf("y", "obj:k3")))
+        assertEquals("v3", obj.traverseMulti("obj:k3", "y"))
+        assertEquals("v3", obj.traverseMulti(*arrayOf("obj:k3", "y")))
+
     }
 
 }
