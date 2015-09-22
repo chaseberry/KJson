@@ -1,8 +1,5 @@
 package edu.csh.chase.kjson
 
-import edu.csh.chase.kjson.JsonObject
-import edu.csh.chase.kjson.JsonSerializable
-
 abstract class JsonBase : JsonSerializable {
 
     /**
@@ -24,7 +21,7 @@ abstract class JsonBase : JsonSerializable {
      * @return The value that was found by the provided key, or null if nothing was found
      */
     fun traverse(compoundKey: String): Any? {
-        val key = compoundKey.splitBy(delim).iterator()
+        val key = compoundKey.split(delim).iterator()
         return when (this) {
             is JsonArray -> traverseArray(key, this)
             is JsonObject -> traverseObject(key, this)
