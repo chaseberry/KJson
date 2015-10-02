@@ -375,7 +375,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      *
      * @return The value removed, or null if none were removed
      */
-    fun remove(key:String):Any? = map.remove(key)
+    fun remove(key: String): Any? = map.remove(key)
 
     /**
      * Removes all values from this JsonObject
@@ -406,14 +406,6 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      */
     fun isNull(key: String): Boolean {
         return key in this && get(key) == null
-    }
-
-    operator fun plus(other: JsonObject): JsonObject {
-        val newJson = JsonObject(map)
-        for ((key, value) in other) {
-            newJson.putOnce(key, value)
-        }
-        return newJson
     }
 
     override fun equals(other: Any?): Boolean {
