@@ -12,7 +12,7 @@ maven {
 
 Then add the following to your dependencies
 ```Groovy
-compile edu.csh.chase.kjson:kjson:0.0.1
+compile "edu.csh.chase.kjson:kjson:0.0.2"
 ```
 
 I will be adding it to JCenter once I'm happy with everything, but for now it's in an early beta stage
