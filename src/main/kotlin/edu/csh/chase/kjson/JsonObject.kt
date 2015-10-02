@@ -369,6 +369,15 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
     //Other functions
 
     /**
+     * Removes a given (key, value) pair from this JsonObject
+     *
+     * @param key The key to remove
+     *
+     * @return The value removed, or null if none were removed
+     */
+    fun remove(key:String):Any? = map.remove(key)
+
+    /**
      * Removes all values from this JsonObject
      * No data is saved and the size is reset to 0
      *
