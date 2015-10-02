@@ -49,35 +49,4 @@ public object JsonDelegates {
 
     }
 
-
-    open class StringMVal(protected val `object`: JsonObject) : ReadOnlyProperty<Any, String?> {
-        override fun get(thisRef: Any, property: PropertyMetadata): String? {
-            return `object`.getString(property.name)
-        }
-    }
-
-    class StringMVar(`object`: JsonObject) : StringMVal(`object`), ReadWriteProperty<Any, String?> {
-        override fun set(thisRef: Any, property: PropertyMetadata, value: String?) {
-            `object`[property.name] = value
-        }
-
-    }
-
-    open class StringVal(protected val `object`: JsonObject, val default: String) : ReadOnlyProperty<Any, String> {
-        override fun get(thisRef: Any, property: PropertyMetadata): String {
-            return `object`.getString(property.name, default)
-        }
-    }
-
-    class StringVar(`object`: JsonObject, default: String) : StringVal(`object`, default), ReadWriteProperty<Any, String> {
-        override fun set(thisRef: Any, property: PropertyMetadata, value: String) {
-            `object`[property.name] = value
-        }
-
-    }
-
-    public fun stringVal(`object`: JsonObject): StringMVal = StringMVal(`object`)
-
-    public fun stringVal(`object`: JsonObject, default: String): StringVal = StringVal(`object`, default)
-
 }
