@@ -12,7 +12,7 @@ object json {
      * @param elements A list of Any? elements to put into a JsonArray
      * @return A JsonArray containing only valid elements from the provided list
      */
-    fun get(vararg elements: Any?): JsonArray {
+    operator fun get(vararg elements: Any?): JsonArray {
         return JsonArray(*elements)
     }
 
@@ -23,7 +23,7 @@ object json {
      * @param elements A list of key, value pairs
      * @return A JsonObject with only valid pairs from the provided lambda
      */
-    fun invoke(vararg elements: Pair<String, Any?>): JsonObject {
+    operator fun invoke(vararg elements: Pair<String, Any?>): JsonObject {
         return JsonObject(*elements)
     }
 

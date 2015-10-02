@@ -99,11 +99,11 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
 
     //Getters
 
-    fun get(index: Int): Any? {
+    operator fun get(index: Int): Any? {
         return getValue(index)
     }
 
-    fun get(index: Int, default: Any): Any {
+    operator fun get(index: Int, default: Any): Any {
         return getValue(index) ?: return default
     }
 
@@ -157,7 +157,7 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
 
     //Other Functions
 
-    fun contains(index: Int): Boolean {
+    operator fun contains(index: Int): Boolean {
         return index in array.indices
     }
 
@@ -183,7 +183,7 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
 
     override fun toString(shouldIndent: Boolean, depth: Int): String {
         val sw = StringWriter()
-        synchronized (sw.getBuffer()) {
+        synchronized (sw.buffer) {
             return this.write(sw, shouldIndent, depth).toString()
         }
     }

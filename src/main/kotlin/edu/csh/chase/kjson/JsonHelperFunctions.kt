@@ -8,7 +8,7 @@ import java.io.StringWriter
 import java.io.Writer
 import java.util.HashMap
 
-private fun String.times(count: Int): String {
+operator private fun String.times(count: Int): String {
     if (count < 0) {
         return this
     }
@@ -38,7 +38,7 @@ private fun String.times(count: Int): String {
  */
 fun quote(string: String): String {
     val sw = StringWriter();
-    synchronized (sw.getBuffer()) {
+    synchronized (sw.buffer) {
         return quote(string, sw).toString();
     }
 }

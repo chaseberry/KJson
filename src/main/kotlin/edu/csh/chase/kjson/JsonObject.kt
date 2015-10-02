@@ -1,14 +1,9 @@
 package edu.csh.chase.kjson
 
-import edu.csh.chase.kjson.JsonTokener
-import edu.csh.chase.kjson.isValidJsonType
-import edu.csh.chase.kjson.quote
-import edu.csh.chase.kjson.JsonBase
-import edu.csh.chase.kjson.JsonException
 import java.io.IOException
 import java.io.StringWriter
 import java.io.Writer
-import java.util.HashMap
+import java.util.*
 
 class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
 
@@ -160,7 +155,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      *
      * @throws JsonException an unchecked exception will be thrown if the passed value is not a valid Json value type
      */
-    fun set(key: String, value: Any?) {
+    operator fun set(key: String, value: Any?) {
         addKeyToValue(key, value)
     }
 
@@ -227,7 +222,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param key The key to pull the value from
      * @return The value corresponding to the given key, null if no value was found
      */
-    fun get(key: String): Any? {
+    operator fun get(key: String): Any? {
         return map[key]
     }
 
@@ -238,7 +233,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param default The default value to return if null is found
      * @return The value corresponding to the given key, default if no value was found
      */
-    fun get(key: String, default: Any): Any {
+    operator fun get(key: String, default: Any): Any {
         if (map[key] != null) {
             return map[key]!!
         }
@@ -391,7 +386,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      *
      * @return Boolean true if a key exists in this JsonObject, false otherwise
      */
-    fun contains(key: String): Boolean {
+    operator fun contains(key: String): Boolean {
         return key in map
     }
 
@@ -404,7 +399,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
         return key in this && get(key) == null
     }
 
-    fun plus(other: JsonObject): JsonObject {
+    operator fun plus(other: JsonObject): JsonObject {
         val newJson = JsonObject(map)
         for ((key, value) in other) {
             newJson.putOnce(key, value)
@@ -436,7 +431,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
 
     override fun toString(shouldIndent: Boolean, depth: Int): String {
         val writer = StringWriter()
-        synchronized (writer.getBuffer()) {
+        synchronized (writer.buffer) {
             return this.write(writer, shouldIndent, depth).toString()
         }
     }
