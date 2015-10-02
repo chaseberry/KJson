@@ -3,7 +3,7 @@ package edu.csh.chase.kjson
 import java.io.IOException
 import java.io.StringWriter
 import java.io.Writer
-import java.util.ArrayList
+import java.util.*
 
 class JsonArray() : JsonBase(), Iterable<Any?> {
 
@@ -157,6 +157,13 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
 
     //Other Functions
 
+    /**
+     * Gets an immutable copy of this JsonArray's internal array
+     *
+     * @return An immutable array
+     */
+    fun getInternalArray(): List<Any?> = Collections.unmodifiableList(array)
+
     operator fun contains(index: Int): Boolean {
         return index in array.indices
     }
@@ -233,7 +240,7 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
                 writer.write(getJsonValue(value, shouldIndent, depth + 1))
                 addComa = true
             }
-            if(shouldIndent){
+            if (shouldIndent) {
                 writer.write("\n")
                 writer.indent(depth - 1)
             }

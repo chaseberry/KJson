@@ -369,6 +369,14 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
     //Other functions
 
     /**
+     * Returns an immutable map of this JsonObject
+     * This is ReadOnly and modifying will cause an exception to be thrown
+     *
+     * @return An immutable map
+     */
+    fun getInternalMap(): Map<String, Any?> = Collections.unmodifiableMap(map)
+
+    /**
      * Removes a given (key, value) pair from this JsonObject
      *
      * @param key The key to remove
