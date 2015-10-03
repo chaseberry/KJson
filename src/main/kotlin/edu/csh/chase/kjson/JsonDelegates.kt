@@ -9,7 +9,7 @@ public object JsonDelegates {
 
     open class JsonObjectVal<T : Any?>(protected val jsonObject: JsonObject) : ReadOnlyProperty<Any, T> {
 
-        override fun get(thisRef: Any, property: PropertyMetadata): T {
+        operator override fun get(thisRef: Any, property: PropertyMetadata): T {
             return jsonObject[property.name] as T
         }
 
@@ -19,7 +19,7 @@ public object JsonDelegates {
 
     class JsonObjectVar<T : Any?>(jsonObject: JsonObject) : JsonObjectVal<T>(jsonObject), ReadWriteProperty<Any, T> {
 
-        override fun set(thisRef: Any, desc: PropertyMetadata, value: T) {
+        operator override fun set(thisRef: Any, desc: PropertyMetadata, value: T) {
             jsonObject[desc.name] = value
         }
 
@@ -31,7 +31,7 @@ public object JsonDelegates {
     private open class JsonObjectValNotNull<T : Any>(protected val jsonObject: JsonObject, val defaultValue: T) :
             ReadOnlyProperty<Any, T> {
 
-        override fun get(thisRef: Any, property: PropertyMetadata): T {
+        operator override fun get(thisRef: Any, property: PropertyMetadata): T {
             return jsonObject[property.name, defaultValue] as T
         }
 
@@ -43,7 +43,7 @@ public object JsonDelegates {
     private class JsonObjectVarNotNull<T : Any>(jsonObject: JsonObject, defaultValue: T) :
             JsonObjectValNotNull<T>(jsonObject, defaultValue), ReadWriteProperty<Any, T> {
 
-        override fun set(thisRef: Any, property: PropertyMetadata, value: T) {
+        operator override fun set(thisRef: Any, property: PropertyMetadata, value: T) {
             jsonObject[property.name] = value
         }
 
