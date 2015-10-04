@@ -1,8 +1,5 @@
 package edu.csh.chase.kjson
 
-import edu.csh.chase.kjson.JsonArray
-import edu.csh.chase.kjson.JsonObject
-
 object json {
 
     /**

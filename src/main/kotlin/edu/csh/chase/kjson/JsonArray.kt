@@ -168,10 +168,6 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
         return index in array.indices
     }
 
-    fun forEach(operation: (Any?) -> Unit) {
-        array.forEach(operation)
-    }
-
     override fun jsonSerialize(): String {
         return this.toString(false)
     }
