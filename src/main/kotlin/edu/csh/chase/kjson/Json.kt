@@ -1,6 +1,6 @@
 package edu.csh.chase.kjson
 
-object json {
+object Json {
 
     /**
      * Constructs a JsonArray from a list of elements
