@@ -1,5 +1,7 @@
 package edu.csh.chase.kjson
 
+import java.util.*
+
 object Json {
 
     /**
@@ -44,6 +46,22 @@ object Json {
 
         }
         return null
+    }
+
+    fun parseToObject(jsonString: String): JsonObject? {
+        return try {
+            JsonObject(jsonString)
+        } catch(excep: JsonException) {
+            null
+        }
+    }
+
+    fun parseToArray(jsonString: String): JsonArray? {
+        return try {
+            JsonArray(jsonString)
+        } catch(excep: JsonException) {
+            null
+        }
     }
 
 }
