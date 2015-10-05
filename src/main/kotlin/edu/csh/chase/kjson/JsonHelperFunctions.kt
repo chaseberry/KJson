@@ -4,25 +4,6 @@ import java.io.StringWriter
 import java.io.Writer
 import java.util.*
 
-operator private fun String.times(count: Int): String {
-    if (count < 0) {
-        return this
-    }
-    if (count == 0) {
-        return ""
-    }
-
-    var str = ""
-
-    for (z in 1..count) {
-        str += this
-    }
-
-    return str
-
-}
-
-
 /**
  * Produce a string in double quotes with backslash sequences in all the
  * right places. A backslash will be inserted within </, producing <\/,
@@ -101,7 +82,11 @@ fun quote(string: String, w: Writer): Writer {
  *
  * @param indent The number of tabs(3 spaces) to add
  */
-fun Writer.indent(indent: Int) = write("   " * indent)
+fun Writer.indent(indent: Int){
+    for(z in 1..indent){
+        write("   ")
+    }
+}
 
 fun getJsonValue(value: Any?, shouldIndent: Boolean = false, depth: Int = 1): String {
     return when (value) {
