@@ -233,7 +233,7 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
                     writer.write("\n")
                     writer.indent(depth)
                 }
-                writer.write(getJsonValue(value, shouldIndent, depth + 1))
+                writer.write(jsonValueToString(value, shouldIndent, depth + 1))
                 addComa = true
             }
             if (shouldIndent) {

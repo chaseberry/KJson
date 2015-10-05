@@ -20,23 +20,19 @@ class JsonTokener(private var reader: Reader) {
     private var previous = '0'
 
     /**
-     * Construct a JsonTokener from a string.
+     * Construct a JsonTokener from an InputStream.
      *
      * @param stream     A source string.
      */
     constructor(stream: InputStream) : this(InputStreamReader(stream))
 
     /**
-     * Construct a JsonTokener from an InputStream.
-     * @param inputStream The source.
+     * Construct a JsonTokener from a String.
+     * @param str The string input.
      */
     constructor(str: String) : this(StringReader(str))
 
-    /**
-     * Construct a JsonTokener from a Reader.
-     *
-     * @param reader     A reader.
-     */
+
     init {
         reader = if (reader.markSupported()) reader else BufferedReader(reader)
     }
@@ -340,6 +336,7 @@ class JsonTokener(private var reader: Reader) {
         }
         return stringToValue(string)
     }
+
 
     /**
      * Make a JSONException to signal a syntax error.
