@@ -46,6 +46,13 @@ object Json {
         return null
     }
 
+    /**
+     * Parses a String directly into a JsonObject?
+     * Just a convenience to prevent type checking
+     *
+     * @param jsonString The raw json String
+     * @return JsonObject if it could be parsed, else null
+     */
     fun parseToObject(jsonString: String): JsonObject? {
         return try {
             JsonObject(jsonString)
@@ -54,6 +61,13 @@ object Json {
         }
     }
 
+    /**
+     * Parses a String directly into a JsonArray?
+     * Just a convenience to prevent type checking
+     *
+     * @param jsonString The raw json String
+     * @return JsonArray if it could be parsed, else null
+     */
     fun parseToArray(jsonString: String): JsonArray? {
         return try {
             JsonArray(jsonString)
