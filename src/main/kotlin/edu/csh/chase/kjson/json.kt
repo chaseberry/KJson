@@ -13,6 +13,7 @@ object json {
         return JsonArray(*elements)
     }
 
+
     /**
      * Constructs a JsonObject from a list of Pair<String, Any?>
      * Provided pairs with invalid json types will be ignored
