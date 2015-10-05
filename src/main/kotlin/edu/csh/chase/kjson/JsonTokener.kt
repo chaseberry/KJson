@@ -341,39 +341,6 @@ class JsonTokener(private var reader: Reader) {
         return stringToValue(string)
     }
 
-
-    /**
-     * Skip characters until the next character is the requested character.
-     * If the requested character is not found, no characters are skipped.
-     * @param to A character to skip to.
-     * @return The requested character, or zero if the requested character
-     * is not found.
-     */
-    fun skipTo(to: Char): Char {
-        var c: Char
-        try {
-            val startIndex = this.index
-            val startCharacter = this.character
-            val startLine = this.line
-            this.reader.mark(1000000)
-            do {
-                c = this.next()
-                if (c == 0.toChar()) {
-                    this.reader.reset()
-                    this.index = startIndex
-                    this.character = startCharacter
-                    this.line = startLine
-                    return c
-                }
-            } while (c != to)
-        } catch (exception: IOException) {
-            throw JsonException(exception)
-        }
-        this.back()
-        return c
-    }
-
-
     /**
      * Make a JSONException to signal a syntax error.
      *
