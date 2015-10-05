@@ -88,18 +88,6 @@ fun Writer.indent(indent: Int){
     }
 }
 
-fun jsonValueToString(value: Any?, shouldIndent: Boolean = false, depth: Int = 1): String {
-    return when (value) {
-        null -> "null"
-        is Collection<Any?> -> JsonArray(value.filter { it.isValidJsonType() }).toString(shouldIndent, depth)
-        is Map<*, *> -> JsonObject(value.jsonMapFilter { it.value.isValidJsonType() }).toString(shouldIndent, depth)
-        is String -> quote(value)
-        is JsonBase -> value.toString(shouldIndent, depth)
-        is JsonSerializable -> value.jsonSerialize()
-        else -> value.toString()
-    }
-}
-
 /**
  * Checks whether the calling object is a valid type for json serialization
  * Valid types are Boolean?, Int?, Double?, String?, Collection<Any?>,
@@ -112,7 +100,7 @@ public fun Any?.isValidJsonType(): Boolean {
             || this is Map<*, *> || this is JsonSerializable?
 }
 
-private fun Map<*, *>.jsonMapFilter(filterFun: (Map.Entry<Any?, Any?>) -> (Boolean)): Map<String, Any?> {
+internal fun Map<*, *>.jsonMapFilter(filterFun: (Map.Entry<Any?, Any?>) -> (Boolean)): Map<String, Any?> {
     val map = HashMap<String, Any?>()
     this.forEach {
         if (filterFun(it) && it.key is String) {

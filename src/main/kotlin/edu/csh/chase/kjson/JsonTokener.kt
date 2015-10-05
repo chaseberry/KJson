@@ -52,35 +52,6 @@ class JsonTokener(private var reader: Reader) {
         this.eof = false
     }
 
-    fun stringToValue(string: String): Any? {
-        when (string.toLowerCase()) {
-            "true" -> return true
-            "false" -> return false
-            "null" -> return null
-        }
-        if ((string[0] >= '0' && string[0] <= '9') || string[0] == '-') {
-            try {
-                //Is it a Double?
-                if (string.contains('.') || string.contains('e') || string.contains('E')) {
-                    val double = string.toDouble()
-                    if (!double.isNaN() && !double.isInfinite()) {
-                        return double
-                    }
-                    //Long or Int
-                } else {
-                    val long = string.toLong()
-                    if (long.compareTo(long.toInt()) == 0) {
-                        return long.toInt()
-                    }
-                    return long
-                }
-            } catch(exception: ClassCastException) {
-
-            }
-        }
-        return string
-    }
-
     /**
      *
      */
@@ -334,7 +305,7 @@ class JsonTokener(private var reader: Reader) {
         if ("".equals(string)) {
             throw this.syntaxError("Missing value")
         }
-        return stringToValue(string)
+        return JsonValues.fromString(string)
     }
 
 

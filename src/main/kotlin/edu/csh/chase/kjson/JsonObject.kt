@@ -485,7 +485,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
                 if (shouldIndent) {
                     writer.write(" ")
                 }
-                writer.write(jsonValueToString(value, shouldIndent, depth + 1))
+                writer.write(JsonValues.toString(value, shouldIndent, depth + 1))
                 addComa = true
             }
             if (shouldIndent) {
