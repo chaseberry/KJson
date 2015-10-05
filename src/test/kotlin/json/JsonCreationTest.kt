@@ -2,7 +2,7 @@ package json
 
 import edu.csh.chase.kjson.JsonArray
 import edu.csh.chase.kjson.JsonObject
-import edu.csh.chase.kjson.json
+import edu.csh.chase.kjson.Json
 import org.junit.Test
 import kotlin.test.assertEquals
 
@@ -10,13 +10,13 @@ class JsonCreationTest {
 
     @Test fun testObjectCreationEmpty() {
         val obj = JsonObject()
-        assertEquals(obj, json ())
+        assertEquals(obj, Json ())
     }
 
     @Test fun testObjectCreation() {
         val obj = JsonObject("key" to "value")
         assertEquals(obj,
-                json (
+                Json (
                         "key" to "value"
                 )
         )
@@ -25,12 +25,12 @@ class JsonCreationTest {
 
     @Test fun testArrayCreationEmpty() {
         val arr = JsonArray()
-        assertEquals(arr, json.get())
+        assertEquals(arr, Json.get())
     }
 
     @Test fun testArrayCreation() {
         val arr = JsonArray().put("value")
-        assertEquals(arr, json[
+        assertEquals(arr, Json[
                 "value"
                 ])
     }
