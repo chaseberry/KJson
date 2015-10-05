@@ -1,7 +1,5 @@
 package edu.csh.chase.kjson
 
-import java.util.*
-
 object Json {
 
     /**
