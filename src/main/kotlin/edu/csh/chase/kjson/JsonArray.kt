@@ -164,6 +164,8 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
      */
     fun getInternalArray(): List<Any?> = Collections.unmodifiableList(array)
 
+    fun remove(index:Int):Any? = array.remove(index)
+
     operator fun contains(index: Int): Boolean {
         return index in array.indices
     }
