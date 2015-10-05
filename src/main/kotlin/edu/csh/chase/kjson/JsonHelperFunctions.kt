@@ -165,23 +165,3 @@ fun Double?.jsonSerialize(): String {
 fun Boolean?.jsonSerialize(): String {
     return this.toString()
 }
-
-/**
- * A function that will attempt to create a JsonObject or JsonArray from a given String
- *
- * @param jsonString The String to attempt to be read as json
- * @return A valid JsonObject, JsonArray or null if it failed to parse the Json
- */
-fun parseJsonString(jsonString: String): JsonBase? {
-    try {
-        return JsonObject(jsonString)
-    } catch(excep: JsonException) {
-
-    }
-    try {
-        return JsonArray(jsonString)
-    } catch(excep: JsonException) {
-
-    }
-    return null
-}
