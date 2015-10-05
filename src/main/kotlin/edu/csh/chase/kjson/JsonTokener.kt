@@ -1,7 +1,5 @@
 package edu.csh.chase.kjson
 
-import edu.csh.chase.kjson.JsonException
-import edu.csh.chase.kjson.JsonObject
 import java.io.*
 
 /**
@@ -56,27 +54,6 @@ class JsonTokener(private var reader: Reader) {
         this.character--
         this.usePrevious = true
         this.eof = false
-    }
-
-
-    /**
-     * Get the hex value of a character (base16).
-     * @param char A character between '0' and '9' or between 'A' and 'F' or
-     * between 'a' and 'f'.
-     * @return  An int between 0 and 15, or -1 if c was not a hex digit.
-     */
-    //TODO Remove this from this scope? Or just remove? I don't see where it's used
-    fun dehexchar(char: Char): Char {
-        if (char >= '0' && char <= '9') {
-            return (char - '0').toChar()
-        }
-        if (char >= 'A' && char <= 'F') {
-            return (char - ('A' - 10.toChar()).toChar()).toChar()
-        }
-        if (char >= 'a' && char <= 'f') {
-            return (char - ('a' - 10.toChar()).toChar()).toChar()
-        }
-        return (-1).toChar()
     }
 
     fun stringToValue(string: String): Any? {
