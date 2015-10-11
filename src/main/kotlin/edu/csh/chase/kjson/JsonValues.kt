@@ -1,6 +1,6 @@
 package edu.csh.chase.kjson
 
-object JsonValues {
+public object JsonValues {
 
     fun toString(value: Any?, shouldIndent: Boolean = false, depth: Int = 1): String {
         return when (value) {
