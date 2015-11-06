@@ -31,7 +31,7 @@ fun quote(string: String): String {
  * @return A String correctly formatted for insertion in a JSON text.
  */
 fun quote(string: String, w: Writer): Writer {
-    if (string.length() == 0) {
+    if (string.length == 0) {
         w.write("\"\"");
         return w;
     }
@@ -42,7 +42,7 @@ fun quote(string: String, w: Writer): Writer {
     w.write("\"");
     for (z in string.indices) {
         b = c;//before
-        c = string.charAt(z);//current
+        c = string[z];//current
         when (c) {
             '\\', '"' -> {
                 w.write("\\\\");
@@ -65,7 +65,7 @@ fun quote(string: String, w: Writer): Writer {
                         || (c >= '\u2000' && c < '\u2100')) {
                     w.write("\\u");
                     val hhhh = Integer.toHexString(c.toInt());
-                    w.write("0000", 0, 4 - hhhh.length());
+                    w.write("0000", 0, 4 - hhhh.length);
                     w.write(hhhh);
                 } else {
                     w.write(c.toString());

@@ -11,7 +11,7 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
 
     override val size: Int
         get() {
-            return array.size()
+            return array.size
         }
 
     val indices: IntRange

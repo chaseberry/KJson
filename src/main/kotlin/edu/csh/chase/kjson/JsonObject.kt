@@ -14,7 +14,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      */
     override val size: Int
         get() {
-            return map.size()
+            return map.size
         }
 
     /**
@@ -22,7 +22,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      */
     val keys: Iterator<String>
         get() {
-            return map.keySet().iterator()
+            return map.keys.iterator()
         }
 
     /**
@@ -30,7 +30,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      */
     val keySet: Set<String>
         get() {
-            return map.keySet()
+            return map.keys
         }
 
     /**

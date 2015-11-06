@@ -93,7 +93,7 @@ class JsonObjectTest() {
             assertEquals("{\"key\":\"value\"}", obj.toString())
 
         } catch(exception: JsonException) {
-            assert(false) { "Creating valid Json threw exception ${exception.getMessage()}" }
+            assert(false) { "Creating valid Json threw exception ${exception.message}" }
         }
     }
 
@@ -105,7 +105,7 @@ class JsonObjectTest() {
             obj["string"] = "aString"
             obj["int"] = 10
         } catch(invalidValue: JsonException) {
-            assert(false) { "Invalid value added to JsonObject ${invalidValue.getMessage()}" }
+            assert(false) { "Invalid value added to JsonObject ${invalidValue.message}" }
         }
 
         assertEquals(2, obj.size)
