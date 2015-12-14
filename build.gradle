@@ -1,4 +1,4 @@
-def $versionNumber = '0.0.9'//Current uploaded version
+def $versionNumber = '0.0.10'//Current uploaded version
 
 group 'edu.csh.chase.kjson'
 version $versionNumber
@@ -14,7 +14,7 @@ repositories {
 }
 
 buildscript {
-    ext.kotlin_version = '1.0.0-beta-1103'
+    ext.kotlin_version = '1.0.0-beta-2423'
     repositories {
         mavenCentral()
         jcenter()
