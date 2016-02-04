@@ -2,11 +2,8 @@ package json
 
 import edu.csh.chase.kjson.JsonArray
 import edu.csh.chase.kjson.JsonException
+import org.junit.Assert.*
 import org.junit.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertNull
-import kotlin.test.assertTrue
 
 class JsonArrayTest() {
 
@@ -39,7 +36,7 @@ class JsonArrayTest() {
     }
 
     @Test fun jsonArrayGetTest() {
-        val array = JsonArray(*arrayOf<Any?>(0, "String", null, false, 15.687))
+        val array = JsonArray(*arrayOf(0, "String", null, false, 15.687))
 
         assertEquals(5, array.size)
         assertTrue(3 in array)
@@ -57,12 +54,12 @@ class JsonArrayTest() {
         assertEquals(false, array[3] as Boolean)
         assertEquals(false, array[3, true] as Boolean)
 
-        assertEquals(15.687, array[4] as Double)
-        assertEquals(15.687, array[4, 1.0] as Double)
+        assertEquals(15.687, array[4] as Double, 0.0)
+        assertEquals(15.687, array[4, 1.0] as Double, 0.0)
     }
 
     @Test fun jsonArrayGetDefaultTest() {
-        val array = JsonArray(arrayOf<Any?>(0, "String", null, false, 15.687))
+        val array = JsonArray(arrayOf(0, "String", null, false, 15.687))
 
         assertEquals(15, array[-1, 15])
         assertEquals("default", array[12, "default"])
@@ -86,7 +83,7 @@ class JsonArrayTest() {
     }
 
     @Test fun jsonArrayGetIntTest() {
-        val array = JsonArray(*arrayOf<Any?>(15, 0, null, 15.9, "A String"))
+        val array = JsonArray(*arrayOf(15, 0, null, 15.9, "A String"))
         assertEquals(5, array.size)
 
         assertEquals(15, array.getInt(0)!!)

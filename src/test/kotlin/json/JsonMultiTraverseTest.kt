@@ -2,8 +2,8 @@ package json
 
 import edu.csh.chase.kjson.JsonObject
 import org.junit.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNull
+import org.junit.Assert.*
+
 
 class JsonMultiTraverseTest {
 

@@ -14,7 +14,7 @@ public object JsonDelegates {
 
     }
 
-    private class JsonObjectVarNotNull<T : Any>(jsonObject: JsonObject, defaultValue: T) :
+    public class JsonObjectVarNotNull<T : Any>(jsonObject: JsonObject, defaultValue: T) :
             JsonObjectValNotNull<T>(jsonObject, defaultValue), ReadWriteProperty<Any, T> {
 
         operator override fun setValue(thisRef: Any, property: KProperty<*>, value: T) {
@@ -30,7 +30,7 @@ public object JsonDelegates {
 
     }
 
-    private open class JsonObjectValNotNull<T : Any>(protected val jsonObject: JsonObject, val defaultValue: T) :
+    public open class JsonObjectValNotNull<T : Any>(protected val jsonObject: JsonObject, val defaultValue: T) :
             ReadOnlyProperty<Any, T> {
 
         override fun getValue(thisRef: Any, property: KProperty<*>): T {
