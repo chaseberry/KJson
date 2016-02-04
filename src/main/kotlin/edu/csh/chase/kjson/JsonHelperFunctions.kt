@@ -14,9 +14,9 @@ import java.util.*
  * @return A String correctly formatted for insertion in a JSON text.
  */
 fun quote(string: String): String {
-    val sw = StringWriter();
+    val sw = StringWriter()
     synchronized (sw.buffer) {
-        return quote(string, sw).toString();
+        return quote(string, sw).toString()
     }
 }
 
@@ -32,49 +32,36 @@ fun quote(string: String): String {
  */
 fun quote(string: String, w: Writer): Writer {
     if (string.length == 0) {
-        w.write("\"\"");
-        return w;
+        w.write("\"\"")
+        return w
     }
 
-    var b: Char
-    var c: Char = 0.toChar()
-
-    w.write("\"");
+    w.write("\"")
     for (z in string.indices) {
-        b = c;//before
-        c = string[z];//current
+        val c = string[z]//current
         when (c) {
-            '\\', '"' -> {
-                w.write("\\\\");
-                w.write(c.toString());
-            }
-            '/' -> {
-                if (b == '<') {
-                    // /<?
-                    w.write("\\\\");
-                }
-                w.write(c.toString());
-            }
-            '\b' -> w.write("\\b");
-            '\t' -> w.write("\\t");
-            '\n' -> w.write("\\n");
-            '\u000C' -> w.write("\\f");
-            '\r' -> w.write("\\r");
+            '\\' -> w.write("\\\\")
+            '"' -> w.write("\\\"")
+            '\b' -> w.write("\\b")
+            '\t' -> w.write("\\t")
+            '\n' -> w.write("\\n")
+            '\u000C' -> w.write("\\f")
+            '\r' -> w.write("\\r")
             else -> {
                 if (c < ' ' || (c >= '\u0080' && c < '\u00a0')
                         || (c >= '\u2000' && c < '\u2100')) {
-                    w.write("\\u");
-                    val hhhh = Integer.toHexString(c.toInt());
-                    w.write("0000", 0, 4 - hhhh.length);
-                    w.write(hhhh);
+                    w.write("\\u")
+                    val hhhh = Integer.toHexString(c.toInt())
+                    w.write("0000", 0, 4 - hhhh.length)
+                    w.write(hhhh)
                 } else {
-                    w.write(c.toString());
+                    w.write(c.toString())
                 }
             }
         }
     }
-    w.write("\"");
-    return w;
+    w.write("\"")
+    return w
 }
 
 /**
@@ -82,8 +69,8 @@ fun quote(string: String, w: Writer): Writer {
  *
  * @param indent The number of tabs(3 spaces) to add
  */
-fun Writer.indent(indent: Int){
-    for(z in 1..indent){
+fun Writer.indent(indent: Int) {
+    for (z in 1..indent) {
         write("   ")
     }
 }

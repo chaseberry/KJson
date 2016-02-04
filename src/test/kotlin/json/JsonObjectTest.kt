@@ -2,11 +2,8 @@ package json
 
 import edu.csh.chase.kjson.JsonException
 import edu.csh.chase.kjson.JsonObject
+import org.junit.Assert.*
 import org.junit.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertNull
-import kotlin.test.assertTrue
 
 
 class JsonObjectTest() {
@@ -118,7 +115,7 @@ class JsonObjectTest() {
 
         }
 
-        assertEquals(15.0, obj["double"] as Double)
+        assertEquals(15.0, obj["double"] as Double, 0.0)
 
         try {
             obj["invalidType"] = "key" to "value"

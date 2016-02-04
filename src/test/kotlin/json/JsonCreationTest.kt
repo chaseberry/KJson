@@ -4,7 +4,7 @@ import edu.csh.chase.kjson.JsonArray
 import edu.csh.chase.kjson.JsonObject
 import edu.csh.chase.kjson.Json
 import org.junit.Test
-import kotlin.test.assertEquals
+import org.junit.Assert.*
 
 class JsonCreationTest {
 
