@@ -1,6 +1,6 @@
 package edu.csh.chase.kjson
 
-public object Json {
+object Json {
 
     /**
      * Constructs a JsonArray from a list of elements
@@ -9,7 +9,7 @@ public object Json {
      * @param elements A list of Any? elements to put into a JsonArray
      * @return A JsonArray containing only valid elements from the provided list
      */
-    public operator fun get(vararg elements: Any?): JsonArray {
+    operator fun get(vararg elements: Any?): JsonArray {
         return JsonArray(*elements)
     }
 
@@ -21,7 +21,7 @@ public object Json {
      * @param elements A list of key, value pairs
      * @return A JsonObject with only valid pairs from the provided lambda
      */
-    public operator fun invoke(vararg elements: Pair<String, Any?>): JsonObject {
+    operator fun invoke(vararg elements: Pair<String, Any?>): JsonObject {
         return JsonObject(*elements)
     }
 
@@ -32,7 +32,7 @@ public object Json {
      * @param jsonString The String to attempt to be read as json
      * @return A valid JsonObject, JsonArray or null if it failed to parse the Json
      */
-    public fun parse(jsonString: String): JsonBase? {
+    fun parse(jsonString: String): JsonBase? {
         try {
             return JsonObject(jsonString)
         } catch(excep: JsonException) {
@@ -53,7 +53,7 @@ public object Json {
      * @param jsonString The raw json String
      * @return JsonObject if it could be parsed, else null
      */
-    public fun parseToObject(jsonString: String): JsonObject? {
+    fun parseToObject(jsonString: String): JsonObject? {
         return try {
             JsonObject(jsonString)
         } catch(excep: JsonException) {
@@ -68,7 +68,7 @@ public object Json {
      * @param jsonString The raw json String
      * @return JsonArray if it could be parsed, else null
      */
-    public fun parseToArray(jsonString: String): JsonArray? {
+    fun parseToArray(jsonString: String): JsonArray? {
         return try {
             JsonArray(jsonString)
         } catch(excep: JsonException) {

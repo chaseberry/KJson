@@ -4,7 +4,7 @@ import kotlin.properties.ReadOnlyProperty
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-public object JsonDelegates {
+object JsonDelegates {
 
     open class JsonObjectVal<T : Any?>(protected val jsonObject: JsonObject) : ReadOnlyProperty<Any, T> {
 
@@ -14,7 +14,7 @@ public object JsonDelegates {
 
     }
 
-    public class JsonObjectVarNotNull<T : Any>(jsonObject: JsonObject, defaultValue: T) :
+    class JsonObjectVarNotNull<T : Any>(jsonObject: JsonObject, defaultValue: T) :
             JsonObjectValNotNull<T>(jsonObject, defaultValue), ReadWriteProperty<Any, T> {
 
         operator override fun setValue(thisRef: Any, property: KProperty<*>, value: T) {
@@ -30,7 +30,7 @@ public object JsonDelegates {
 
     }
 
-    public open class JsonObjectValNotNull<T : Any>(protected val jsonObject: JsonObject, val defaultValue: T) :
+    open class JsonObjectValNotNull<T : Any>(protected val jsonObject: JsonObject, val defaultValue: T) :
             ReadOnlyProperty<Any, T> {
 
         override fun getValue(thisRef: Any, property: KProperty<*>): T {
@@ -39,14 +39,14 @@ public object JsonDelegates {
 
     }
 
-    public fun<T> objectVal(jsonObject: JsonObject): JsonObjectVal<T> = JsonObjectVal(jsonObject)
+    fun<T> objectVal(jsonObject: JsonObject): JsonObjectVal<T> = JsonObjectVal(jsonObject)
 
-    public fun <T> objectVar(jsonObject: JsonObject): JsonObjectVar<T> = JsonObjectVar(jsonObject)
+    fun <T> objectVar(jsonObject: JsonObject): JsonObjectVar<T> = JsonObjectVar(jsonObject)
 
-    public fun <T : Any> objectVal(jsonObject: JsonObject, defaultValue: T): JsonObjectValNotNull<T>
+    fun <T : Any> objectVal(jsonObject: JsonObject, defaultValue: T): JsonObjectValNotNull<T>
             = JsonObjectValNotNull(jsonObject, defaultValue)
 
-    public fun <T : Any> objectVar(jsonObject: JsonObject, defaultValue: T): JsonObjectVarNotNull<T>
+    fun <T : Any> objectVar(jsonObject: JsonObject, defaultValue: T): JsonObjectVarNotNull<T>
             = JsonObjectVarNotNull(jsonObject, defaultValue)
 
 }

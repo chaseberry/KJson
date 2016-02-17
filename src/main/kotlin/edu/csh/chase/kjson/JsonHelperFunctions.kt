@@ -82,7 +82,7 @@ fun Writer.indent(indent: Int) {
  *
  * @return true if the calling object is a valid type for json, false otherwise
  */
-public fun Any?.isValidJsonType(): Boolean {
+fun Any?.isValidJsonType(): Boolean {
     return this is Boolean? || this is Int? || this is Double? || this is String? || this is Collection<Any?>
             || this is Map<*, *> || this is JsonSerializable?
 }

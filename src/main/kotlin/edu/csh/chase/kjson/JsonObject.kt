@@ -453,7 +453,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      *
      * @return The writer.
      */
-    public fun write(writer: Writer): Writer {
+    fun write(writer: Writer): Writer {
         return this.write(writer, false)
     }
 
