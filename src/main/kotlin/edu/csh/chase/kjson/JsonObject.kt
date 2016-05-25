@@ -246,8 +246,12 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param key The key to pull the value from
      * @return The value corresponding to the given key, null if no value was found
      */
-    fun getInt(key: String): Int? {
-        return get(key) as? Int
+    fun getInt(key: String, coerce: Boolean = false): Int? {
+        return if (coerce) {
+            Coercers.toInt(get(key))
+        } else {
+            get(key) as? Int
+        }
     }
 
     /**
@@ -257,8 +261,12 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param default The default value to return if null is found
      * @return The value corresponding to the given key, default if no value was found
      */
-    fun getInt(key: String, default: Int): Int {
-        return getInt(key) ?: return default
+    fun getInt(key: String, default: Int, coerce: Boolean = false): Int {
+        return if (coerce) {
+            Coercers.toInt(get(key)) ?: default
+        } else {
+            getInt(key) ?: default
+        }
     }
 
     /**
@@ -309,8 +317,12 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param key The key to pull the value from
      * @return The value corresponding to the given key, null if no value was found
      */
-    fun getDouble(key: String): Double? {
-        return get(key) as? Double
+    fun getDouble(key: String, coerce: Boolean = false): Double? {
+        return if (coerce) {
+            Coercers.toDouble(get(key))
+        } else {
+            get(key) as? Double
+        }
     }
 
     /**
@@ -320,8 +332,12 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param default The default value to return if null is found
      * @return The value corresponding to the given key, default if no value was found
      */
-    fun getDouble(key: String, default: Double): Double {
-        return getDouble(key) ?: return default
+    fun getDouble(key: String, default: Double, coerce: Boolean = false): Double {
+        return if (coerce) {
+            Coercers.toDouble(get(key)) ?: default
+        } else {
+            getDouble(key) ?: default
+        }
     }
 
     /**
