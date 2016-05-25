@@ -366,6 +366,42 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
         return getJsonArray(key) ?: return default
     }
 
+    fun getFloat(key: String): Float? {
+        val v = get(key)
+        return if (v is Number) {
+            v.toFloat()
+        } else {
+            null
+        }
+    }
+
+    fun getFloat(key: String, default: Float): Float {
+        val v = get(key)
+        return if (v is Number) {
+            v.toFloat()
+        } else {
+            default
+        }
+    }
+
+    fun getLong(key: String): Long? {
+        val v = get(key)
+        return if (v is Number) {
+            v.toLong()
+        } else {
+            null
+        }
+    }
+
+    fun getLong(key: String, default: Long): Long {
+        val v = get(key)
+        return if (v is Number) {
+            v.toLong()
+        } else {
+            default
+        }
+    }
+
     //Other functions
 
     /**

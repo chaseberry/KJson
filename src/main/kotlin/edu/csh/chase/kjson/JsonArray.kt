@@ -155,6 +155,42 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
         return getJsonArray(index) ?: return default
     }
 
+    fun getFloat(index: Int): Float? {
+        val v = get(index)
+        return if (v is Number) {
+            v.toFloat()
+        } else {
+            null
+        }
+    }
+
+    fun getFloat(index: Int, default: Float): Float {
+        val v = get(index)
+        return if (v is Number) {
+            v.toFloat()
+        } else {
+            default
+        }
+    }
+
+    fun getLong(index: Int): Long? {
+        val v = get(index)
+        return if (v is Number) {
+            v.toLong()
+        } else {
+            null
+        }
+    }
+
+    fun getLong(index: Int, default: Long): Long {
+        val v = get(index)
+        return if (v is Number) {
+            v.toLong()
+        } else {
+            default
+        }
+    }
+
     //Other Functions
 
     /**
@@ -164,7 +200,7 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
      */
     fun getInternalArray(): List<Any?> = Collections.unmodifiableList(array)
 
-    fun remove(index:Int):Any? = array.remove(index)
+    fun remove(index: Int): Any? = array.remove(index)
 
     operator fun contains(index: Int): Boolean {
         return index in array.indices
