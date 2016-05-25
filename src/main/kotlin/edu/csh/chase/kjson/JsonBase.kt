@@ -67,6 +67,38 @@ abstract class JsonBase : JsonSerializable {
         return traverseMulti(keys = *keys) ?: default
     }
 
+    fun traverseBoolean(compoundKey: String): Boolean? {
+        return traverse(compoundKey) as? Boolean
+    }
+
+    fun traverseBoolean(compoundKey: String, default: Boolean): Boolean {
+        return traverseBoolean(compoundKey) ?: default
+    }
+
+    fun traverseInt(compoundKey: String): Int? {
+        return traverse(compoundKey) as? Int
+    }
+
+    fun traverseInt(compoundKey: String, default: Int): Int {
+        return traverseInt(compoundKey) ?: default
+    }
+
+    fun traverseDouble(compoundKey: String): Double? {
+        return traverse(compoundKey) as? Double
+    }
+
+    fun traverseDouble(compoundKey: String, default: Double): Double {
+        return traverseDouble(compoundKey) ?: default
+    }
+
+    fun traverseString(compoundKey: String): String? {
+        return traverse(compoundKey) as? String
+    }
+
+    fun traverseString(compoundKey: String, default: String): String {
+        return traverseString(compoundKey) ?: default
+    }
+
     private fun traverseArray(key: Iterator<String>, array: JsonArray): Any? {
         if (!key.hasNext()) {
             return array
