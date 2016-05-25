@@ -155,6 +155,12 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
         return getJsonArray(index) ?: return default
     }
 
+    /**
+     * Gets the value from a given index if the value is a number
+     *
+     * @param index The index to pull the value from
+     * @return The Float from the given index, null if no value or not a number
+     */
     fun getFloat(index: Int): Float? {
         val v = get(index)
         return if (v is Number) {
@@ -164,6 +170,13 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
         }
     }
 
+    /**
+     * Gets the value from the given index if the value is a number
+     *
+     * @param index The index to pull a value from
+     * @param default The default value is no value is found
+     * @return The Float from the given index, default if no value or not a number
+     */
     fun getFloat(index: Int, default: Float): Float {
         val v = get(index)
         return if (v is Number) {
@@ -173,6 +186,12 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
         }
     }
 
+    /**
+     * Gets the value from a given index if the value is a number
+     *
+     * @param index The index to pull the value from
+     * @return The Float from the given index, null if no value or not a number
+     */
     fun getLong(index: Int): Long? {
         val v = get(index)
         return if (v is Number) {
@@ -182,6 +201,13 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
         }
     }
 
+    /**
+     * Gets the value from the given index if the value is a number
+     *
+     * @param index The index to pull a value from
+     * @param default The default value is no value is found
+     * @return The Float from the given index, default if no value or not a number
+     */
     fun getLong(index: Int, default: Long): Long {
         val v = get(index)
         return if (v is Number) {

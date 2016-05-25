@@ -366,6 +366,12 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
         return getJsonArray(key) ?: return default
     }
 
+    /**
+     * Gets the value from a given key if the value is a number
+     *
+     * @param key The key to pull the value from
+     * @return The Float from the given key, null if no value or not a number
+     */
     fun getFloat(key: String): Float? {
         val v = get(key)
         return if (v is Number) {
@@ -375,6 +381,13 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
         }
     }
 
+    /**
+     * Gets the value from the given key if the value is a number
+     *
+     * @param key The key to pull a value from
+     * @param default The default value is no value is found
+     * @return The Float from the given key, default if no value or not a number
+     */
     fun getFloat(key: String, default: Float): Float {
         val v = get(key)
         return if (v is Number) {
@@ -384,6 +397,12 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
         }
     }
 
+    /**
+     * Gets the value from a given key if the value is a number
+     *
+     * @param key The key to pull the value from
+     * @return The Long from the given key, null if no value or not a number
+     */
     fun getLong(key: String): Long? {
         val v = get(key)
         return if (v is Number) {
@@ -393,6 +412,13 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
         }
     }
 
+    /**
+     * Gets the value from the given key if the value is a number
+     *
+     * @param key The key to pull a value from
+     * @param default The default value is no value is found
+     * @return The Long from the given key, default if no value or not a number
+     */
     fun getLong(key: String, default: Long): Long {
         val v = get(key)
         return if (v is Number) {
