@@ -43,30 +43,6 @@ abstract class JsonBase : JsonSerializable {
         return traverse(compoundKey = compoundKey) ?: default
     }
 
-    /**
-     * Traverses this JsonBase with multiple keys
-     *
-     * @param keys A list of keys to check
-     * @return The first found value or null if no key matched
-     */
-    fun traverseMulti(vararg keys: String): Any? {
-        for (key in keys) {
-            return traverse(compoundKey = key) ?: continue
-        }
-        return null
-    }
-
-    /**
-     * Traverses this JsonBase with a default value if a null was found
-     *
-     * @param default A default if null was found
-     * @param keys A list of keys to check
-     * @return The first found value or default if none worked
-     */
-    fun traverseMultiWithDefault(default: Any, vararg keys: String): Any {
-        return traverseMulti(keys = *keys) ?: default
-    }
-
     fun traverseBoolean(compoundKey: String): Boolean? {
         return traverse(compoundKey) as? Boolean
     }
@@ -97,6 +73,71 @@ abstract class JsonBase : JsonSerializable {
 
     fun traverseString(compoundKey: String, default: String): String {
         return traverseString(compoundKey) ?: default
+    }
+
+    fun traverseJsonObject(compoundKey: String): JsonObject? {
+        return traverse(compoundKey) as? JsonObject
+    }
+
+    fun traverseJsonObject(compoundKey: String, default: JsonObject): JsonObject {
+        return traverseJsonObject(compoundKey) ?: default
+    }
+
+    fun traverseJsonArray(compoundKey: String): JsonArray? {
+        return traverse(compoundKey) as? JsonArray
+    }
+
+    fun traverseJsonArray(compoundKey: String, default: JsonArray): JsonArray {
+        return traverseJsonArray(compoundKey) ?: default
+    }
+
+    fun traverseFloat(compoundKey: String): Float? {
+        val num = traverse(compoundKey)
+        if (num is Number) {
+            return num.toFloat()
+        }
+        return null
+    }
+
+    fun traverseFloat(compoundKey: String, default: Float): Float {
+        return traverseFloat(compoundKey) ?: default
+    }
+
+    fun traverseLong(compoundKey: String): Long? {
+        val num = traverse(compoundKey)
+        if (num is Number) {
+            return num.toLong()
+        }
+        return null
+    }
+
+    fun traverseLong(compoundKey: String, default: Long): Long {
+        return traverseLong(compoundKey) ?: default
+    }
+
+
+    /**
+     * Traverses this JsonBase with multiple keys
+     *
+     * @param keys A list of keys to check
+     * @return The first found value or null if no key matched
+     */
+    fun traverseMulti(vararg keys: String): Any? {
+        for (key in keys) {
+            return traverse(compoundKey = key) ?: continue
+        }
+        return null
+    }
+
+    /**
+     * Traverses this JsonBase with a default value if a null was found
+     *
+     * @param default A default if null was found
+     * @param keys A list of keys to check
+     * @return The first found value or default if none worked
+     */
+    fun traverseMultiWithDefault(default: Any, vararg keys: String): Any {
+        return traverseMulti(keys = *keys) ?: default
     }
 
     private fun traverseArray(key: Iterator<String>, array: JsonArray): Any? {
