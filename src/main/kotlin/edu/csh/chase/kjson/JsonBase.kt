@@ -115,13 +115,13 @@ abstract class JsonBase : JsonSerializable {
         return traverseLong(compoundKey) ?: default
     }
 
-
     /**
      * Traverses this JsonBase with multiple keys
      *
      * @param keys A list of keys to check
      * @return The first found value or null if no key matched
      */
+    @Deprecated("Might be removed in the future. To be determined")
     fun traverseMulti(vararg keys: String): Any? {
         for (key in keys) {
             return traverse(compoundKey = key) ?: continue
@@ -136,6 +136,7 @@ abstract class JsonBase : JsonSerializable {
      * @param keys A list of keys to check
      * @return The first found value or default if none worked
      */
+    @Deprecated("Might be removed in the future. To be determined")
     fun traverseMultiWithDefault(default: Any, vararg keys: String): Any {
         return traverseMulti(keys = *keys) ?: default
     }
