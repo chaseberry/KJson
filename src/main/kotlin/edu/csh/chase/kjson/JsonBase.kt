@@ -43,34 +43,86 @@ abstract class JsonBase : JsonSerializable {
         return traverse(compoundKey = compoundKey) ?: default
     }
 
+    /**
+     * Traverses a JsonBase for a Boolean?
+     *
+     * @param compoundKey The compound key to search for
+     * @return A boolean if the key resolved or null if the value was not found or not a boolean
+     */
     fun traverseBoolean(compoundKey: String): Boolean? {
         return traverse(compoundKey) as? Boolean
     }
 
+    /**
+     * Traverses a JsonBase for a Boolean
+     *
+     * @param compoundKey The compound key to search for
+     * @param default A default value
+     * @return A boolean if the key resolved or default if the value was not found or not a boolean
+     */
     fun traverseBoolean(compoundKey: String, default: Boolean): Boolean {
         return traverseBoolean(compoundKey) ?: default
     }
 
+    /**
+     * Traverses a JsonBase for an Int?
+     *
+     * @param compoundKey The compound key to search for
+     * @return An Int if the key resolved or null
+     */
     fun traverseInt(compoundKey: String): Int? {
         return traverse(compoundKey) as? Int
     }
 
+    /**
+     * Traverses a JsonBase for an Int
+     *
+     * @param compoundKey The compound key to search for
+     * @param default A default value
+     * @return An Int if the key resolved or default if the value was not found or not an Int
+     */
     fun traverseInt(compoundKey: String, default: Int): Int {
         return traverseInt(compoundKey) ?: default
     }
 
+    /**
+     * Traverses a JsonBase for a Double?
+     *
+     * @param compoundKey The compound key to search for
+     * @return A Double if the key resolved or null
+     */
     fun traverseDouble(compoundKey: String): Double? {
         return traverse(compoundKey) as? Double
     }
 
+    /**
+     * Traverses a JsonBase for a Double
+     *
+     * @param compoundKey The compound key to search for
+     * @param default A default value
+     * @return A Double if the key resolved or default if the value was not found or not a Double
+     */
     fun traverseDouble(compoundKey: String, default: Double): Double {
         return traverseDouble(compoundKey) ?: default
     }
 
+    /**
+     * Traverses a JsonBase for a String?
+     *
+     * @param compoundKey The compound key to search for
+     * @return A String if the key resolved or null
+     */
     fun traverseString(compoundKey: String): String? {
         return traverse(compoundKey) as? String
     }
 
+    /**
+     * Traverses a JsonBase for a String
+     *
+     * @param compoundKey The compound key to search for
+     * @param default A default value
+     * @return A String if the key resolved or default if the value was not found or not a String
+     */
     fun traverseString(compoundKey: String, default: String): String {
         return traverseString(compoundKey) ?: default
     }
