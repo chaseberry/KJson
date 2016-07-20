@@ -265,6 +265,14 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      */
     fun getBoolean(key: String, default: Boolean): Boolean = getBoolean(key) ?: default
 
+    /**
+     * Gets the value from a given key and attempts to coerce it to a Boolean
+     * If no value can be found, or coercion fails it will return the default provided
+     *
+     * @param key The key to pull the value from
+     * @param default The default value to return if no value is found, or the coercion fails
+     * @return The coerced value found, or default
+     */
     fun coerceBoolean(key: String, default: Boolean): Boolean = coerceBoolean(key) ?: default
 
     /**
