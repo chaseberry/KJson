@@ -241,12 +241,20 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
     }
 
     /**
-     * Gets the value from a given key
+     * Gets a Boolean? from a given key
      *
      * @param key The key to pull the value from
-     * @return The value corresponding to the given key, null if no value was found
+     * @return The Boolean corresponding to the given key, null if no value was found
      */
     fun getBoolean(key: String): Boolean? = get(key) as? Boolean
+
+    /**
+     * Gets the value for the given key and attempts to coerce it into a boolean.
+     *
+     * @param key THe key to coerce the value from
+     * @return The Boolean corresponding to the given key, null if there was no value, or it couldn't be coerced
+     */
+    fun coerceBoolean(key: String): Boolean? = Coercers.toBoolean(get(key))
 
     /**
      * Gets the value from a given key
@@ -256,6 +264,8 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @return The value corresponding to the given key, default if no value was found
      */
     fun getBoolean(key: String, default: Boolean): Boolean = getBoolean(key) ?: default
+
+    fun coerceBoolean(key: String, default: Boolean): Boolean = coerceBoolean(key) ?: default
 
     /**
      * Gets the value from a given key
