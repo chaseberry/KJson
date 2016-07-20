@@ -246,13 +246,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param key The key to pull the value from
      * @return The value corresponding to the given key, null if no value was found
      */
-    fun getInt(key: String, coerce: Boolean = false): Int? {
-        return if (coerce) {
-            Coercers.toInt(get(key))
-        } else {
-            get(key) as? Int
-        }
-    }
+    fun getBoolean(key: String): Boolean? = get(key) as? Boolean
 
     /**
      * Gets the value from a given key
@@ -261,13 +255,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param default The default value to return if null is found
      * @return The value corresponding to the given key, default if no value was found
      */
-    fun getInt(key: String, default: Int, coerce: Boolean = false): Int {
-        return if (coerce) {
-            Coercers.toInt(get(key)) ?: default
-        } else {
-            getInt(key) ?: default
-        }
-    }
+    fun getBoolean(key: String, default: Boolean): Boolean = getBoolean(key) ?: default
 
     /**
      * Gets the value from a given key
@@ -275,9 +263,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param key The key to pull the value from
      * @return The value corresponding to the given key, null if no value was found
      */
-    fun getBoolean(key: String): Boolean? {
-        return get(key) as? Boolean
-    }
+    fun getInt(key: String, coerce: Boolean = false): Int? = get(key) as? Int
 
     /**
      * Gets the value from a given key
@@ -286,9 +272,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param default The default value to return if null is found
      * @return The value corresponding to the given key, default if no value was found
      */
-    fun getBoolean(key: String, default: Boolean): Boolean {
-        return getBoolean(key) ?: return default
-    }
+    fun getInt(key: String, default: Int, coerce: Boolean = false): Int = getInt(key) ?: default
 
     /**
      * Gets the value from a given key
@@ -296,9 +280,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param key The key to pull the value from
      * @return The value corresponding to the given key, null if no value was found
      */
-    fun getString(key: String): String? {
-        return get(key) as? String
-    }
+    fun getString(key: String): String? = get(key) as? String
 
     /**
      * Gets the value from a given key
@@ -307,9 +289,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param default The default value to return if null is found
      * @return The value corresponding to the given key, default if no value was found
      */
-    fun getString(key: String, default: String): String {
-        return getString(key) ?: return default
-    }
+    fun getString(key: String, default: String): String = getString(key) ?: default
 
     /**
      * Gets the value from a given key
@@ -317,13 +297,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param key The key to pull the value from
      * @return The value corresponding to the given key, null if no value was found
      */
-    fun getDouble(key: String, coerce: Boolean = false): Double? {
-        return if (coerce) {
-            Coercers.toDouble(get(key))
-        } else {
-            get(key) as? Double
-        }
-    }
+    fun getDouble(key: String): Double? = get(key) as? Double
 
     /**
      * Gets the value from a given key
@@ -332,13 +306,8 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param default The default value to return if null is found
      * @return The value corresponding to the given key, default if no value was found
      */
-    fun getDouble(key: String, default: Double, coerce: Boolean = false): Double {
-        return if (coerce) {
-            Coercers.toDouble(get(key)) ?: default
-        } else {
-            getDouble(key) ?: default
-        }
-    }
+    fun getDouble(key: String, default: Double): Double = getDouble(key) ?: default
+
 
     /**
      * Gets the value from a given key
@@ -346,9 +315,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param key The key to pull the value from
      * @return The value corresponding to the given key, null if no value was found
      */
-    fun getJsonObject(key: String): JsonObject? {
-        return get(key) as? JsonObject
-    }
+    fun getJsonObject(key: String): JsonObject? = get(key) as? JsonObject
 
     /**
      * Gets the value from a given key
@@ -357,9 +324,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param default The default value to return if null is found
      * @return The value corresponding to the given key, default if no value was found
      */
-    fun getJsonObject(key: String, default: JsonObject): JsonObject {
-        return getJsonObject(key) ?: return default
-    }
+    fun getJsonObject(key: String, default: JsonObject): JsonObject = getJsonObject(key) ?: default
 
     /**
      * Gets the value from a given key
@@ -367,9 +332,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param key The key to pull the value from
      * @return The value corresponding to the given key, null if no value was found
      */
-    fun getJsonArray(key: String): JsonArray? {
-        return get(key) as? JsonArray
-    }
+    fun getJsonArray(key: String): JsonArray? = get(key) as? JsonArray
 
     /**
      * Gets the value from a given key
@@ -378,9 +341,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param default The default value to return if null is found
      * @return The value corresponding to the given key, default if no value was found
      */
-    fun getJsonArray(key: String, default: JsonArray): JsonArray {
-        return getJsonArray(key) ?: return default
-    }
+    fun getJsonArray(key: String, default: JsonArray): JsonArray = getJsonArray(key) ?: default
 
     //Other functions
 
