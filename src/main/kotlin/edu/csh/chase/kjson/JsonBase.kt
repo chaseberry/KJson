@@ -127,18 +127,44 @@ abstract class JsonBase : JsonSerializable {
         return traverseString(compoundKey) ?: default
     }
 
+    /**
+     * Traverses a JsonBase for a JsonObject?
+     *
+     * @param compoundKey The compound key to search for
+     * @return A JsonObject if the key resolved or null
+     */
     fun traverseJsonObject(compoundKey: String): JsonObject? {
         return traverse(compoundKey) as? JsonObject
     }
 
+    /**
+     * Traverses a JsonBase for a JsonObject
+     *
+     * @param compoundKey The compound key to search for
+     * @param default A default value
+     * @return A JsonObject if the key resolved or default if the value was not found or not a JsonObject
+     */
     fun traverseJsonObject(compoundKey: String, default: JsonObject): JsonObject {
         return traverseJsonObject(compoundKey) ?: default
     }
 
+    /**
+     * Traverses a JsonBase for a JsonArray?
+     *
+     * @param compoundKey The compound key to search for
+     * @return A JsonArray if the key resolved or null
+     */
     fun traverseJsonArray(compoundKey: String): JsonArray? {
         return traverse(compoundKey) as? JsonArray
     }
 
+    /**
+     * Traverses a JsonBase for a JsonArray
+     *
+     * @param compoundKey The compound key to search for
+     * @param default A default value
+     * @return A JsonArray if the key resolved or default if the value was not found or not a JsonArray
+     */
     fun traverseJsonArray(compoundKey: String, default: JsonArray): JsonArray {
         return traverseJsonArray(compoundKey) ?: default
     }
