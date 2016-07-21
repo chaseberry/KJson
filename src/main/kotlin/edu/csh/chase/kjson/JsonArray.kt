@@ -156,8 +156,23 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
      */
     fun getInt(index: Int, default: Int): Int = getInt(index) ?: default
 
+    /**
+     * Gets a Double from this JsonArray
+     * If the index is out of bounds of the array it will return null
+     *
+     * @param index The index of the array to get the value from
+     * @return The Double found at the given index, or null if the index is out of bounds
+     */
     fun getDouble(index: Int): Double? = getValue(index) as? Double
 
+    /**
+     * Gets a Double from this JsonArray
+     * If no value is found, or the value is null, will return default instead
+     *
+     * @param index The index of the array to get the value from
+     * @param default The default value
+     * @return The Double found at the given index, or default if the value is null or index out of bounds
+     */
     fun getDouble(index: Int, default: Double): Double = getDouble(index) ?: default
 
     fun getString(index: Int): String? = getValue(index) as? String
