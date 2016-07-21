@@ -38,4 +38,11 @@ object Coercers {
         }
     }
 
+    fun toString(value: Any?): String? {
+        return when (value) {
+            is String? -> value
+            else -> value?.toString()
+        }
+    }
+
 }
