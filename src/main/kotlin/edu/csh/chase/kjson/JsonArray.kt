@@ -163,9 +163,27 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
         return getValue(index) as? Double
     }
 
+    /**
+     * Grabs a value from this JsonArray and attempts to coerce it to a Double
+     *
+     * @param index The array index to grab the value from
+     * @return The coerced value, or null
+     */
+    fun coerceDouble(index: Int): Double? = Coercers.toDouble(get(index))
+
     fun getDouble(index: Int, default: Double): Double {
         return getDouble(index) ?: return default
     }
+
+    /**
+     * Grabs a value from this JsonArray and attempts to coerce it to a Double
+     * If no value is present, or the value could not be coerced, it will return the provided default
+     *
+     * @param index The array index to grab the value from
+     * @param default The default value to return
+     * @return The coerced value, or default
+     */
+    fun coerceDouble(index: Int, default: Double): Double = coerceDouble(index) ?: default
 
     fun getString(index: Int): String? {
         return getValue(index) as? String
