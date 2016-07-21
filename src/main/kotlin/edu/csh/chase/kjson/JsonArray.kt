@@ -137,8 +137,23 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
      */
     fun getBoolean(index: Int, default: Boolean): Boolean = getBoolean(index) ?: default
 
+    /**
+     * Gets an Int from this JsonArray
+     * If the index is out of bounds of the array it will return null
+     *
+     * @param index The index of the array to get the value from
+     * @return The Int found at the given index, or null if the index is out of bounds
+     */
     fun getInt(index: Int): Int? = getValue(index) as? Int
 
+    /**
+     * Gets an Int from this JsonArray
+     * If no value is found, or the value is null, will return default instead
+     *
+     * @param index The index of the array to get the value from
+     * @param default The default value
+     * @return The Int found at the given index, or default if the value is null or index out of bounds
+     */
     fun getInt(index: Int, default: Int): Int = getInt(index) ?: default
 
     fun getDouble(index: Int): Double? = getValue(index) as? Double
