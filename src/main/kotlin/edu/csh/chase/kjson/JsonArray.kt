@@ -113,12 +113,28 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
      * If no value is found, or the value is null, will return default instead
      *
      * @param index The index of the array to get the value from
+     * @param default The default value
      * @return The value found at the given index, or default if the value is null or index out of bounds
      */
     operator fun get(index: Int, default: Any): Any = getValue(index) ?: default
 
+    /**
+     * Gets a Boolean from this JsonArray
+     * If the index is out of bounds of the array it will return null
+     *
+     * @param index The index of the array to get the value from
+     * @return The Boolean found at the given index, or null if the index is out of bounds
+     */
     fun getBoolean(index: Int): Boolean? = getValue(index) as? Boolean
 
+    /**
+     * Gets a Boolean from this JsonArray
+     * If no value is found, or the value is null, will return default instead
+     *
+     * @param index The index of the array to get the value from
+     * @param default The default value
+     * @return The Boolean found at the given index, or default if the value is null or index out of bounds
+     */
     fun getBoolean(index: Int, default: Boolean): Boolean = getBoolean(index) ?: default
 
     fun getInt(index: Int): Int? = getValue(index) as? Int
