@@ -319,6 +319,15 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
     fun getString(key: String): String? = get(key) as? String
 
     /**
+     * Gets the value for the given key and attempts to coerce it into a String.
+     * Coercing to a String will only return null if the value is null/not present. All other values are .toString()
+     *
+     * @param key The key to coerce the value from
+     * @return The String corresponding to the given key, null if there was no value, or it couldn't be coerced
+     */
+    fun coerceString(key: String): String? = Coercers.toString(get(key))
+
+    /**
      * Gets the value from a given key
      *
      * @param key The key to pull the value from
@@ -326,6 +335,17 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @return The value corresponding to the given key, default if no value was found
      */
     fun getString(key: String, default: String): String = getString(key) ?: default
+
+    /**
+     * Gets the value for the given key and attempts to coerce it into a String.
+     * Coercing to a String will only return null if the value is null/not present. All other values are .toString()
+     * If no value can be found, or coercion fails it will return the default provided
+     *
+     * @param key The key to pull the value from
+     * @param default The default value to return if no value is found, or the coercion fails
+     * @return The coerced value, or default
+     */
+    fun coerceString(key: String, default: String): String = coerceString(key) ?: default
 
     /**
      * Gets the value from a given key
