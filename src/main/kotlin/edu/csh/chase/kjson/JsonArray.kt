@@ -175,12 +175,42 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
      */
     fun getDouble(index: Int, default: Double): Double = getDouble(index) ?: default
 
+    /**
+     * Gets a String from this JsonArray
+     * If the index is out of bounds of the array it will return null
+     *
+     * @param index The index of the array to get the value from
+     * @return The String found at the given index, or null if the index is out of bounds
+     */
     fun getString(index: Int): String? = getValue(index) as? String
 
+    /**
+     * Gets a String from this JsonArray
+     * If no value is found, or the value is null, will return default instead
+     *
+     * @param index The index of the array to get the value from
+     * @param default The default value
+     * @return The String found at the given index, or default if the value is null or index out of bounds
+     */
     fun getString(index: Int, default: String): String = getString(index) ?: default
 
+    /**
+     * Gets a JsonObject from this JsonArray
+     * If the index is out of bounds of the array it will return null
+     *
+     * @param index The index of the array to get the value from
+     * @return The JsonObject found at the given index, or null if the index is out of bounds
+     */
     fun getJsonObject(index: Int): JsonObject? = getValue(index) as? JsonObject
 
+    /**
+     * Gets a JsonObject from this JsonArray
+     * If no value is found, or the value is null, will return default instead
+     *
+     * @param index The index of the array to get the value from
+     * @param default The default value
+     * @return The JsonObject found at the given index, or default if the value is null or index out of bounds
+     */
     fun getJsonObject(index: Int, default: JsonObject): JsonObject = getJsonObject(index) ?: default
 
     fun getJsonArray(index: Int): JsonArray? = getValue(index) as? JsonArray
