@@ -356,6 +356,14 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
     fun getDouble(key: String): Double? = get(key) as? Double
 
     /**
+     * Gets the value for the given key and attempts to coerce it into a Double.
+     *
+     * @param key The key to coerce the value from
+     * @return The Int corresponding to the given key, null if there was no value, or it couldn't be coerced
+     */
+    fun coerceDouble(key: String): Double? = Coercers.toDouble(get(key))
+
+    /**
      * Gets the value from a given key
      *
      * @param key The key to pull the value from
@@ -364,6 +372,15 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      */
     fun getDouble(key: String, default: Double): Double = getDouble(key) ?: default
 
+    /**
+     * Gets the value from a given key and attempts to coerce it to a Double
+     * If no value can be found, or coercion fails it will return the default provided
+     *
+     * @param key The key to pull the value from
+     * @param default The default value to return if no value is found, or the coercion fails
+     * @return The coerced value, or default
+     */
+    fun coerceDouble(key: String, default: Double): Double = coerceDouble(key) ?: default
 
     /**
      * Gets the value from a given key
