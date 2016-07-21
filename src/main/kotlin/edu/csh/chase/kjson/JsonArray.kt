@@ -99,61 +99,33 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
 
     //Getters
 
-    operator fun get(index: Int): Any? {
-        return getValue(index)
-    }
+    operator fun get(index: Int): Any? = getValue(index)
 
-    operator fun get(index: Int, default: Any): Any {
-        return getValue(index) ?: return default
-    }
+    operator fun get(index: Int, default: Any): Any = getValue(index) ?: default
 
-    fun getBoolean(index: Int): Boolean? {
-        return getValue(index) as? Boolean
-    }
+    fun getBoolean(index: Int): Boolean? = getValue(index) as? Boolean
 
-    fun getBoolean(index: Int, default: Boolean): Boolean {
-        return getBoolean(index) ?: return default
-    }
+    fun getBoolean(index: Int, default: Boolean): Boolean = getBoolean(index) ?: default
 
-    fun getInt(index: Int): Int? {
-        return getValue(index) as? Int
-    }
+    fun getInt(index: Int): Int? = getValue(index) as? Int
 
-    fun getInt(index: Int, default: Int): Int {
-        return getInt(index) ?: return default
-    }
+    fun getInt(index: Int, default: Int): Int = getInt(index) ?: default
 
-    fun getDouble(index: Int): Double? {
-        return getValue(index) as? Double
-    }
+    fun getDouble(index: Int): Double? = getValue(index) as? Double
 
-    fun getDouble(index: Int, default: Double): Double {
-        return getDouble(index) ?: return default
-    }
+    fun getDouble(index: Int, default: Double): Double = getDouble(index) ?: default
 
-    fun getString(index: Int): String? {
-        return getValue(index) as? String
-    }
+    fun getString(index: Int): String? = getValue(index) as? String
 
-    fun getString(index: Int, default: String): String {
-        return getString(index) ?: return default
-    }
+    fun getString(index: Int, default: String): String = getString(index) ?: default
 
-    fun getJsonObject(index: Int): JsonObject? {
-        return getValue(index) as? JsonObject
-    }
+    fun getJsonObject(index: Int): JsonObject? = getValue(index) as? JsonObject
 
-    fun getJsonObject(index: Int, default: JsonObject): JsonObject {
-        return getJsonObject(index) ?: return default
-    }
+    fun getJsonObject(index: Int, default: JsonObject): JsonObject = getJsonObject(index) ?: default
 
-    fun getJsonArray(index: Int): JsonArray? {
-        return getValue(index) as? JsonArray
-    }
+    fun getJsonArray(index: Int): JsonArray? = getValue(index) as? JsonArray
 
-    fun getJsonArray(index: Int, default: JsonArray): JsonArray {
-        return getJsonArray(index) ?: return default
-    }
+    fun getJsonArray(index: Int, default: JsonArray): JsonArray = getJsonArray(index) ?: default
 
     /**
      * Gets the value from a given index if the value is a number
