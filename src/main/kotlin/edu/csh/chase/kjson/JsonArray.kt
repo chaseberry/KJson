@@ -99,61 +99,138 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
 
     //Getters
 
-    operator fun get(index: Int): Any? {
-        return getValue(index)
-    }
+    /**
+     * Gets a value from this JsonArray
+     * If the index is out of bounds of the array it will return null
+     *
+     * @param index The index of the array to get the value from
+     * @return The value found at the given index, or null if the index is out of bounds
+     */
+    operator fun get(index: Int): Any? = getValue(index)
 
-    operator fun get(index: Int, default: Any): Any {
-        return getValue(index) ?: return default
-    }
+    /**
+     * Gets a value from this JsonArray
+     * If no value is found, or the value is null, will return default instead
+     *
+     * @param index The index of the array to get the value from
+     * @param default The default value
+     * @return The value found at the given index, or default if the value is null or index out of bounds
+     */
+    operator fun get(index: Int, default: Any): Any = getValue(index) ?: default
 
-    fun getBoolean(index: Int): Boolean? {
-        return getValue(index) as? Boolean
-    }
+    /**
+     * Gets a Boolean from this JsonArray
+     * If the index is out of bounds of the array it will return null
+     *
+     * @param index The index of the array to get the value from
+     * @return The Boolean found at the given index, or null if the index is out of bounds
+     */
+    fun getBoolean(index: Int): Boolean? = getValue(index) as? Boolean
 
-    fun getBoolean(index: Int, default: Boolean): Boolean {
-        return getBoolean(index) ?: return default
-    }
+    /**
+     * Gets a Boolean from this JsonArray
+     * If no value is found, or the value is null, will return default instead
+     *
+     * @param index The index of the array to get the value from
+     * @param default The default value
+     * @return The Boolean found at the given index, or default if the value is null or index out of bounds
+     */
+    fun getBoolean(index: Int, default: Boolean): Boolean = getBoolean(index) ?: default
 
-    fun getInt(index: Int): Int? {
-        return getValue(index) as? Int
-    }
+    /**
+     * Gets an Int from this JsonArray
+     * If the index is out of bounds of the array it will return null
+     *
+     * @param index The index of the array to get the value from
+     * @return The Int found at the given index, or null if the index is out of bounds
+     */
+    fun getInt(index: Int): Int? = getValue(index) as? Int
 
-    fun getInt(index: Int, default: Int): Int {
-        return getInt(index) ?: return default
-    }
+    /**
+     * Gets an Int from this JsonArray
+     * If no value is found, or the value is null, will return default instead
+     *
+     * @param index The index of the array to get the value from
+     * @param default The default value
+     * @return The Int found at the given index, or default if the value is null or index out of bounds
+     */
+    fun getInt(index: Int, default: Int): Int = getInt(index) ?: default
 
-    fun getDouble(index: Int): Double? {
-        return getValue(index) as? Double
-    }
+    /**
+     * Gets a Double from this JsonArray
+     * If the index is out of bounds of the array it will return null
+     *
+     * @param index The index of the array to get the value from
+     * @return The Double found at the given index, or null if the index is out of bounds
+     */
+    fun getDouble(index: Int): Double? = getValue(index) as? Double
 
-    fun getDouble(index: Int, default: Double): Double {
-        return getDouble(index) ?: return default
-    }
+    /**
+     * Gets a Double from this JsonArray
+     * If no value is found, or the value is null, will return default instead
+     *
+     * @param index The index of the array to get the value from
+     * @param default The default value
+     * @return The Double found at the given index, or default if the value is null or index out of bounds
+     */
+    fun getDouble(index: Int, default: Double): Double = getDouble(index) ?: default
 
-    fun getString(index: Int): String? {
-        return getValue(index) as? String
-    }
+    /**
+     * Gets a String from this JsonArray
+     * If the index is out of bounds of the array it will return null
+     *
+     * @param index The index of the array to get the value from
+     * @return The String found at the given index, or null if the index is out of bounds
+     */
+    fun getString(index: Int): String? = getValue(index) as? String
 
-    fun getString(index: Int, default: String): String {
-        return getString(index) ?: return default
-    }
+    /**
+     * Gets a String from this JsonArray
+     * If no value is found, or the value is null, will return default instead
+     *
+     * @param index The index of the array to get the value from
+     * @param default The default value
+     * @return The String found at the given index, or default if the value is null or index out of bounds
+     */
+    fun getString(index: Int, default: String): String = getString(index) ?: default
 
-    fun getJsonObject(index: Int): JsonObject? {
-        return getValue(index) as? JsonObject
-    }
+    /**
+     * Gets a JsonObject from this JsonArray
+     * If the index is out of bounds of the array it will return null
+     *
+     * @param index The index of the array to get the value from
+     * @return The JsonObject found at the given index, or null if the index is out of bounds
+     */
+    fun getJsonObject(index: Int): JsonObject? = getValue(index) as? JsonObject
 
-    fun getJsonObject(index: Int, default: JsonObject): JsonObject {
-        return getJsonObject(index) ?: return default
-    }
+    /**
+     * Gets a JsonObject from this JsonArray
+     * If no value is found, or the value is null, will return default instead
+     *
+     * @param index The index of the array to get the value from
+     * @param default The default value
+     * @return The JsonObject found at the given index, or default if the value is null or index out of bounds
+     */
+    fun getJsonObject(index: Int, default: JsonObject): JsonObject = getJsonObject(index) ?: default
 
-    fun getJsonArray(index: Int): JsonArray? {
-        return getValue(index) as? JsonArray
-    }
+    /**
+     * Gets a JsonArray from this JsonArray
+     * If the index is out of bounds of the array it will return null
+     *
+     * @param index The index of the array to get the value from
+     * @return The JsonArray found at the given index, or null if the index is out of bounds
+     */
+    fun getJsonArray(index: Int): JsonArray? = getValue(index) as? JsonArray
 
-    fun getJsonArray(index: Int, default: JsonArray): JsonArray {
-        return getJsonArray(index) ?: return default
-    }
+    /**
+     * Gets a JsonArray from this JsonArray
+     * If no value is found, or the value is null, will return default instead
+     *
+     * @param index The index of the array to get the value from
+     * @param default The default value
+     * @return The JsonArray found at the given index, or default if the value is null or index out of bounds
+     */
+    fun getJsonArray(index: Int, default: JsonArray): JsonArray = getJsonArray(index) ?: default
 
     /**
      * Gets the value from a given index if the value is a number
