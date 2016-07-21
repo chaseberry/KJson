@@ -189,9 +189,29 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
         return getValue(index) as? String
     }
 
+    /**
+     * Grabs a value from this JsonArray and attempts to coerce it to a String
+     * Coercing to a String will only return null if the value is null/not present. All other values are .toString()
+     *
+     * @param index The array index to grab the value from
+     * @return The coerced value, or null
+     */
+    fun coerceString(index: Int): String? = Coercers.toString(get(index))
+
     fun getString(index: Int, default: String): String {
         return getString(index) ?: return default
     }
+
+    /**
+     * Grabs a value from this JsonArray and attempts to coerce it to a String
+     * If no value is present, or the value could not be coerced, it will return the provided default
+     * Coercing to a String will only return null if the value is null/not present. All other values are .toString()
+     *
+     * @param index The array index to grab the value from
+     * @param default The default value to return
+     * @return The coerced value, or default
+     */
+    fun coerceString(index: Int, default: String): String = coerceString(index) ?: default
 
     fun getJsonObject(index: Int): JsonObject? {
         return getValue(index) as? JsonObject
