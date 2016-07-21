@@ -115,7 +115,7 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
      * Grabs a value from this JsonArray and attempts to coerce it to a Boolean
      *
      * @param index The array index to grab the value from
-     * @return The coerced Boolean, or null
+     * @return The coerced value, or null
      */
     fun coerceBoolean(index: Int): Boolean? = Coercers.toBoolean(get(index))
 
@@ -137,9 +137,27 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
         return getValue(index) as? Int
     }
 
+    /**
+     * Grabs a value from this JsonArray and attempts to coerce it to an Int
+     *
+     * @param index The array index to grab the value from
+     * @return The coerced value, or null
+     */
+    fun coerceInt(index: Int): Int? = Coercers.toInt(get(index))
+
     fun getInt(index: Int, default: Int): Int {
         return getInt(index) ?: return default
     }
+
+    /**
+     * Grabs a value from this JsonArray and attempts to coerce it to an Int
+     * If no value is present, or the value could not be coerced, it will return the provided default
+     *
+     * @param index The array index to grab the value from
+     * @param default The default value to return
+     * @return The coerced value, or default
+     */
+    fun coerceInt(index: Int, default: Int): Int = coerceInt(index) ?: default
 
     fun getDouble(index: Int): Double? {
         return getValue(index) as? Double
