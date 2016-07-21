@@ -99,8 +99,22 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
 
     //Getters
 
+    /**
+     * Gets a value from this JsonArray
+     * If the index is out of bounds of the array it will return null
+     *
+     * @param index The index of the array to get the value from
+     * @return The value found at the given index, or null if the index is out of bounds
+     */
     operator fun get(index: Int): Any? = getValue(index)
 
+    /**
+     * Gets a value from this JsonArray
+     * If no value is found, or the value is null, will return default instead
+     *
+     * @param index The index of the array to get the value from
+     * @return The value found at the given index, or default if the value is null or index out of bounds
+     */
     operator fun get(index: Int, default: Any): Any = getValue(index) ?: default
 
     fun getBoolean(index: Int): Boolean? = getValue(index) as? Boolean
