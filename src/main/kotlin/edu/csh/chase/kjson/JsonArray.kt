@@ -213,8 +213,23 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
      */
     fun getJsonObject(index: Int, default: JsonObject): JsonObject = getJsonObject(index) ?: default
 
+    /**
+     * Gets a JsonArray from this JsonArray
+     * If the index is out of bounds of the array it will return null
+     *
+     * @param index The index of the array to get the value from
+     * @return The JsonArray found at the given index, or null if the index is out of bounds
+     */
     fun getJsonArray(index: Int): JsonArray? = getValue(index) as? JsonArray
 
+    /**
+     * Gets a JsonArray from this JsonArray
+     * If no value is found, or the value is null, will return default instead
+     *
+     * @param index The index of the array to get the value from
+     * @param default The default value
+     * @return The JsonArray found at the given index, or default if the value is null or index out of bounds
+     */
     fun getJsonArray(index: Int, default: JsonArray): JsonArray = getJsonArray(index) ?: default
 
     /**
