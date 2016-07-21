@@ -249,9 +249,9 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
     fun getBoolean(key: String): Boolean? = get(key) as? Boolean
 
     /**
-     * Gets the value for the given key and attempts to coerce it into a boolean.
+     * Gets the value for the given key and attempts to coerce it into a Boolean.
      *
-     * @param key THe key to coerce the value from
+     * @param key The key to coerce the value from
      * @return The Boolean corresponding to the given key, null if there was no value, or it couldn't be coerced
      */
     fun coerceBoolean(key: String): Boolean? = Coercers.toBoolean(get(key))
@@ -271,7 +271,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      *
      * @param key The key to pull the value from
      * @param default The default value to return if no value is found, or the coercion fails
-     * @return The coerced value found, or default
+     * @return The coerced value, or default
      */
     fun coerceBoolean(key: String, default: Boolean): Boolean = coerceBoolean(key) ?: default
 
@@ -281,7 +281,15 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param key The key to pull the value from
      * @return The value corresponding to the given key, null if no value was found
      */
-    fun getInt(key: String, coerce: Boolean = false): Int? = get(key) as? Int
+    fun getInt(key: String): Int? = get(key) as? Int
+
+    /**
+     * Gets the value for the given key and attempts to coerce it into an Int.
+     *
+     * @param key The key to coerce the value from
+     * @return The Int corresponding to the given key, null if there was no value, or it couldn't be coerced
+     */
+    fun coerceInt(key: String): Int? = Coercers.toInt(get(key))
 
     /**
      * Gets the value from a given key
@@ -290,7 +298,17 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param default The default value to return if null is found
      * @return The value corresponding to the given key, default if no value was found
      */
-    fun getInt(key: String, default: Int, coerce: Boolean = false): Int = getInt(key) ?: default
+    fun getInt(key: String, default: Int): Int = getInt(key) ?: default
+
+    /**
+     * Gets the value from a given key and attempts to coerce it to an Int
+     * If no value can be found, or coercion fails it will return the default provided
+     *
+     * @param key The key to pull the value from
+     * @param default The default value to return if no value is found, or the coercion fails
+     * @return The coerced value, or default
+     */
+    fun coerceInt(key: String, default: Int): Int = coerceInt(key) ?: default
 
     /**
      * Gets the value from a given key
