@@ -169,6 +169,12 @@ abstract class JsonBase : JsonSerializable {
         return traverseJsonArray(compoundKey) ?: default
     }
 
+    /**
+     * Traverses a JsonBase for a Float?
+     *
+     * @param compoundKey The compound key to search for
+     * @return A Float if the key resolved or null
+     */
     fun traverseFloat(compoundKey: String): Float? {
         val num = traverse(compoundKey)
         if (num is Number) {
@@ -177,10 +183,23 @@ abstract class JsonBase : JsonSerializable {
         return null
     }
 
+    /**
+     * Traverses a JsonBase for a Float
+     *
+     * @param compoundKey The compound key to search for
+     * @param default A default value
+     * @return A Float if the key resolved or default if the value was not found or not a Float
+     */
     fun traverseFloat(compoundKey: String, default: Float): Float {
         return traverseFloat(compoundKey) ?: default
     }
 
+    /**
+     * Traverses a JsonBase for a Long?
+     *
+     * @param compoundKey The compound key to search for
+     * @return A Long if the key resolved or null
+     */
     fun traverseLong(compoundKey: String): Long? {
         val num = traverse(compoundKey)
         if (num is Number) {
@@ -189,6 +208,13 @@ abstract class JsonBase : JsonSerializable {
         return null
     }
 
+    /**
+     * Traverses a JsonBase for a Long
+     *
+     * @param compoundKey The compound key to search for
+     * @param default A default value
+     * @return A Long if the key resolved or default if the value was not found or not a Long
+     */
     fun traverseLong(compoundKey: String, default: Long): Long {
         return traverseLong(compoundKey) ?: default
     }
