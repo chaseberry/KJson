@@ -44,11 +44,156 @@ abstract class JsonBase : JsonSerializable {
     }
 
     /**
+     * Traverses a JsonBase for a Boolean?
+     *
+     * @param compoundKey The compound key to search for
+     * @return A boolean if the key resolved or null if the value was not found or not a boolean
+     */
+    fun traverseBoolean(compoundKey: String): Boolean? = traverse(compoundKey) as? Boolean
+
+    /**
+     * Traverses a JsonBase for a Boolean
+     *
+     * @param compoundKey The compound key to search for
+     * @param default A default value
+     * @return A boolean if the key resolved or default if the value was not found or not a boolean
+     */
+    fun traverseBoolean(compoundKey: String, default: Boolean): Boolean = traverseBoolean(compoundKey) ?: default
+
+    /**
+     * Traverses a JsonBase for an Int?
+     *
+     * @param compoundKey The compound key to search for
+     * @return An Int if the key resolved or null
+     */
+    fun traverseInt(compoundKey: String): Int? = traverse(compoundKey) as? Int
+
+    /**
+     * Traverses a JsonBase for an Int
+     *
+     * @param compoundKey The compound key to search for
+     * @param default A default value
+     * @return An Int if the key resolved or default if the value was not found or not an Int
+     */
+    fun traverseInt(compoundKey: String, default: Int): Int = traverseInt(compoundKey) ?: default
+
+    /**
+     * Traverses a JsonBase for a Double?
+     *
+     * @param compoundKey The compound key to search for
+     * @return A Double if the key resolved or null
+     */
+    fun traverseDouble(compoundKey: String): Double? = traverse(compoundKey) as? Double
+
+    /**
+     * Traverses a JsonBase for a Double
+     *
+     * @param compoundKey The compound key to search for
+     * @param default A default value
+     * @return A Double if the key resolved or default if the value was not found or not a Double
+     */
+    fun traverseDouble(compoundKey: String, default: Double): Double = traverseDouble(compoundKey) ?: default
+
+    /**
+     * Traverses a JsonBase for a String?
+     *
+     * @param compoundKey The compound key to search for
+     * @return A String if the key resolved or null
+     */
+    fun traverseString(compoundKey: String): String? = traverse(compoundKey) as? String
+
+    /**
+     * Traverses a JsonBase for a String
+     *
+     * @param compoundKey The compound key to search for
+     * @param default A default value
+     * @return A String if the key resolved or default if the value was not found or not a String
+     */
+    fun traverseString(compoundKey: String, default: String): String = traverseString(compoundKey) ?: default
+
+    /**
+     * Traverses a JsonBase for a JsonObject?
+     *
+     * @param compoundKey The compound key to search for
+     * @return A JsonObject if the key resolved or null
+     */
+    fun traverseJsonObject(compoundKey: String): JsonObject? = traverse(compoundKey) as? JsonObject
+
+    /**
+     * Traverses a JsonBase for a JsonObject
+     *
+     * @param compoundKey The compound key to search for
+     * @param default A default value
+     * @return A JsonObject if the key resolved or default if the value was not found or not a JsonObject
+     */
+    fun traverseJsonObject(compoundKey: String, default: JsonObject): JsonObject = traverseJsonObject(compoundKey) ?: default
+
+    /**
+     * Traverses a JsonBase for a JsonArray?
+     *
+     * @param compoundKey The compound key to search for
+     * @return A JsonArray if the key resolved or null
+     */
+    fun traverseJsonArray(compoundKey: String): JsonArray? = traverse(compoundKey) as? JsonArray
+
+    /**
+     * Traverses a JsonBase for a JsonArray
+     *
+     * @param compoundKey The compound key to search for
+     * @param default A default value
+     * @return A JsonArray if the key resolved or default if the value was not found or not a JsonArray
+     */
+    fun traverseJsonArray(compoundKey: String, default: JsonArray): JsonArray = traverseJsonArray(compoundKey) ?: default
+
+    /**
+     * Traverses a JsonBase for a Float?
+     *
+     * @param compoundKey The compound key to search for
+     * @return A Float if the key resolved or null
+     */
+    fun traverseFloat(compoundKey: String): Float? {
+        val num = traverse(compoundKey)
+        if (num is Number) {
+            return num.toFloat()
+        }
+        return null
+    }
+
+    /**
+     * Traverses a JsonBase for a Float
+     *
+     * @param compoundKey The compound key to search for
+     * @param default A default value
+     * @return A Float if the key resolved or default if the value was not found or not a Float
+     */
+    fun traverseFloat(compoundKey: String, default: Float): Float {
+        return traverseFloat(compoundKey) ?: default
+    }
+
+    /**
+     * Traverses a JsonBase for a Long?
+     *
+     * @param compoundKey The compound key to search for
+     * @return A Long if the key resolved or null
+     */
+    fun traverseLong(compoundKey: String): Long? = traverseLong(compoundKey) as? Long
+
+    /**
+     * Traverses a JsonBase for a Long
+     *
+     * @param compoundKey The compound key to search for
+     * @param default A default value
+     * @return A Long if the key resolved or default if the value was not found or not a Long
+     */
+    fun traverseLong(compoundKey: String, default: Long): Long = traverseLong(compoundKey) ?: default
+
+    /**
      * Traverses this JsonBase with multiple keys
      *
      * @param keys A list of keys to check
      * @return The first found value or null if no key matched
      */
+    @Deprecated("Might be removed in the future. To be determined")
     fun traverseMulti(vararg keys: String): Any? {
         for (key in keys) {
             return traverse(compoundKey = key) ?: continue
@@ -63,6 +208,7 @@ abstract class JsonBase : JsonSerializable {
      * @param keys A list of keys to check
      * @return The first found value or default if none worked
      */
+    @Deprecated("Might be removed in the future. To be determined")
     fun traverseMultiWithDefault(default: Any, vararg keys: String): Any {
         return traverseMulti(keys = *keys) ?: default
     }
