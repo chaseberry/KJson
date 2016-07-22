@@ -241,14 +241,20 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
     }
 
     /**
-     * Gets the value from a given key
+     * Gets a Boolean? from a given key
      *
      * @param key The key to pull the value from
-     * @return The value corresponding to the given key, null if no value was found
+     * @return The Boolean corresponding to the given key, null if no value was found
      */
-    fun getInt(key: String): Int? {
-        return get(key) as? Int
-    }
+    fun getBoolean(key: String): Boolean? = get(key) as? Boolean
+
+    /**
+     * Gets the value for the given key and attempts to coerce it into a Boolean.
+     *
+     * @param key The key to coerce the value from
+     * @return The Boolean corresponding to the given key, null if there was no value, or it couldn't be coerced
+     */
+    fun coerceBoolean(key: String): Boolean? = Coercers.toBoolean(get(key))
 
     /**
      * Gets the value from a given key
@@ -257,9 +263,17 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param default The default value to return if null is found
      * @return The value corresponding to the given key, default if no value was found
      */
-    fun getInt(key: String, default: Int): Int {
-        return getInt(key) ?: return default
-    }
+    fun getBoolean(key: String, default: Boolean): Boolean = getBoolean(key) ?: default
+
+    /**
+     * Gets the value from a given key and attempts to coerce it to a Boolean
+     * If no value can be found, or coercion fails it will return the default provided
+     *
+     * @param key The key to pull the value from
+     * @param default The default value to return if no value is found, or the coercion fails
+     * @return The coerced value, or default
+     */
+    fun coerceBoolean(key: String, default: Boolean): Boolean = coerceBoolean(key) ?: default
 
     /**
      * Gets the value from a given key
@@ -267,9 +281,15 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param key The key to pull the value from
      * @return The value corresponding to the given key, null if no value was found
      */
-    fun getBoolean(key: String): Boolean? {
-        return get(key) as? Boolean
-    }
+    fun getInt(key: String): Int? = get(key) as? Int
+
+    /**
+     * Gets the value for the given key and attempts to coerce it into an Int.
+     *
+     * @param key The key to coerce the value from
+     * @return The Int corresponding to the given key, null if there was no value, or it couldn't be coerced
+     */
+    fun coerceInt(key: String): Int? = Coercers.toInt(get(key))
 
     /**
      * Gets the value from a given key
@@ -278,9 +298,17 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param default The default value to return if null is found
      * @return The value corresponding to the given key, default if no value was found
      */
-    fun getBoolean(key: String, default: Boolean): Boolean {
-        return getBoolean(key) ?: return default
-    }
+    fun getInt(key: String, default: Int): Int = getInt(key) ?: default
+
+    /**
+     * Gets the value from a given key and attempts to coerce it to an Int
+     * If no value can be found, or coercion fails it will return the default provided
+     *
+     * @param key The key to pull the value from
+     * @param default The default value to return if no value is found, or the coercion fails
+     * @return The coerced value, or default
+     */
+    fun coerceInt(key: String, default: Int): Int = coerceInt(key) ?: default
 
     /**
      * Gets the value from a given key
@@ -288,9 +316,16 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param key The key to pull the value from
      * @return The value corresponding to the given key, null if no value was found
      */
-    fun getString(key: String): String? {
-        return get(key) as? String
-    }
+    fun getString(key: String): String? = get(key) as? String
+
+    /**
+     * Gets the value for the given key and attempts to coerce it into a String.
+     * Coercing to a String will only return null if the value is null/not present. All other values are .toString()
+     *
+     * @param key The key to coerce the value from
+     * @return The String corresponding to the given key, null if there was no value, or it couldn't be coerced
+     */
+    fun coerceString(key: String): String? = Coercers.toString(get(key))
 
     /**
      * Gets the value from a given key
@@ -299,9 +334,18 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param default The default value to return if null is found
      * @return The value corresponding to the given key, default if no value was found
      */
-    fun getString(key: String, default: String): String {
-        return getString(key) ?: return default
-    }
+    fun getString(key: String, default: String): String = getString(key) ?: default
+
+    /**
+     * Gets the value for the given key and attempts to coerce it into a String.
+     * Coercing to a String will only return null if the value is null/not present. All other values are .toString()
+     * If no value can be found, or coercion fails it will return the default provided
+     *
+     * @param key The key to pull the value from
+     * @param default The default value to return if no value is found, or the coercion fails
+     * @return The coerced value, or default
+     */
+    fun coerceString(key: String, default: String): String = coerceString(key) ?: default
 
     /**
      * Gets the value from a given key
@@ -309,9 +353,15 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param key The key to pull the value from
      * @return The value corresponding to the given key, null if no value was found
      */
-    fun getDouble(key: String): Double? {
-        return get(key) as? Double
-    }
+    fun getDouble(key: String): Double? = get(key) as? Double
+
+    /**
+     * Gets the value for the given key and attempts to coerce it into a Double.
+     *
+     * @param key The key to coerce the value from
+     * @return The Int corresponding to the given key, null if there was no value, or it couldn't be coerced
+     */
+    fun coerceDouble(key: String): Double? = Coercers.toDouble(get(key))
 
     /**
      * Gets the value from a given key
@@ -320,9 +370,17 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param default The default value to return if null is found
      * @return The value corresponding to the given key, default if no value was found
      */
-    fun getDouble(key: String, default: Double): Double {
-        return getDouble(key) ?: return default
-    }
+    fun getDouble(key: String, default: Double): Double = getDouble(key) ?: default
+
+    /**
+     * Gets the value from a given key and attempts to coerce it to a Double
+     * If no value can be found, or coercion fails it will return the default provided
+     *
+     * @param key The key to pull the value from
+     * @param default The default value to return if no value is found, or the coercion fails
+     * @return The coerced value, or default
+     */
+    fun coerceDouble(key: String, default: Double): Double = coerceDouble(key) ?: default
 
     /**
      * Gets the value from a given key
@@ -330,9 +388,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param key The key to pull the value from
      * @return The value corresponding to the given key, null if no value was found
      */
-    fun getJsonObject(key: String): JsonObject? {
-        return get(key) as? JsonObject
-    }
+    fun getJsonObject(key: String): JsonObject? = get(key) as? JsonObject
 
     /**
      * Gets the value from a given key
@@ -341,9 +397,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param default The default value to return if null is found
      * @return The value corresponding to the given key, default if no value was found
      */
-    fun getJsonObject(key: String, default: JsonObject): JsonObject {
-        return getJsonObject(key) ?: return default
-    }
+    fun getJsonObject(key: String, default: JsonObject): JsonObject = getJsonObject(key) ?: default
 
     /**
      * Gets the value from a given key
@@ -351,9 +405,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param key The key to pull the value from
      * @return The value corresponding to the given key, null if no value was found
      */
-    fun getJsonArray(key: String): JsonArray? {
-        return get(key) as? JsonArray
-    }
+    fun getJsonArray(key: String): JsonArray? = get(key) as? JsonArray
 
     /**
      * Gets the value from a given key
@@ -362,9 +414,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param default The default value to return if null is found
      * @return The value corresponding to the given key, default if no value was found
      */
-    fun getJsonArray(key: String, default: JsonArray): JsonArray {
-        return getJsonArray(key) ?: return default
-    }
+    fun getJsonArray(key: String, default: JsonArray): JsonArray = getJsonArray(key) ?: default
 
     /**
      * Gets the value from a given key if the value is a number
@@ -406,6 +456,14 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
     fun getLong(key: String): Long? = get(key) as? Long
 
     /**
+     * Gets the value for the given key and attempts to coerce it into a Long.
+     *
+     * @param key The key to coerce the value from
+     * @return The Long corresponding to the given key, null if there was no value, or it couldn't be coerced
+     */
+    fun coerceLong(key: String): Long? = Coercers.toLong(get(key))
+
+    /**
      * Gets the value from the given key if the value is a number
      *
      * @param key The key to pull a value from
@@ -413,6 +471,16 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @return The Long from the given key, default if no value or not a number
      */
     fun getLong(key: String, default: Long): Long = getLong(key) ?: default
+
+    /**
+     * Gets the value from a given key and attempts to coerce it to a Long
+     * If no value can be found, or coercion fails it will return the default provided
+     *
+     * @param key The key to pull the value from
+     * @param default The default value to return if no value is found, or the coercion fails
+     * @return The coerced value, or default
+     */
+    fun coerceLong(key: String, default: Long): Long = coerceLong(key) ?: default
 
     //Other functions
 

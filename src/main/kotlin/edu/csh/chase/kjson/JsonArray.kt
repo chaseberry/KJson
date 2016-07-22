@@ -128,7 +128,14 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
     fun getBoolean(index: Int): Boolean? = getValue(index) as? Boolean
 
     /**
-     * Gets a Boolean from this JsonArray
+     * Grabs a value from this JsonArray and attempts to coerce it to a Boolean
+     *
+     * @param index The array index to grab the value from
+     * @return The coerced value, or null
+     */
+    fun coerceBoolean(index: Int): Boolean? = Coercers.toBoolean(get(index))
+
+    /** Gets a Boolean from this JsonArray
      * If no value is found, or the value is null, will return default instead
      *
      * @param index The index of the array to get the value from
@@ -138,6 +145,16 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
     fun getBoolean(index: Int, default: Boolean): Boolean = getBoolean(index) ?: default
 
     /**
+     * Grabs a value from this JsonArray and attempts to coerce it to a Boolean
+     * If no value is present, or the value could not be coerced, it will return the provided default
+     *
+     * @param index The array index to grab the value from
+     * @param default The default value to return
+     * @return The coerced value, or default
+     */
+    fun coerceBoolean(index: Int, default: Boolean): Boolean = coerceBoolean(index) ?: default
+
+    /**
      * Gets an Int from this JsonArray
      * If the index is out of bounds of the array it will return null
      *
@@ -145,6 +162,14 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
      * @return The Int found at the given index, or null if the index is out of bounds
      */
     fun getInt(index: Int): Int? = getValue(index) as? Int
+
+    /**
+     * Grabs a value from this JsonArray and attempts to coerce it to an Int
+     *
+     * @param index The array index to grab the value from
+     * @return The coerced value, or null
+     */
+    fun coerceInt(index: Int): Int? = Coercers.toInt(get(index))
 
     /**
      * Gets an Int from this JsonArray
@@ -157,6 +182,16 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
     fun getInt(index: Int, default: Int): Int = getInt(index) ?: default
 
     /**
+     * Grabs a value from this JsonArray and attempts to coerce it to an Int
+     * If no value is present, or the value could not be coerced, it will return the provided default
+     *
+     * @param index The array index to grab the value from
+     * @param default The default value to return
+     * @return The coerced value, or default
+     */
+    fun coerceInt(index: Int, default: Int): Int = coerceInt(index) ?: default
+
+    /**
      * Gets a Double from this JsonArray
      * If the index is out of bounds of the array it will return null
      *
@@ -164,6 +199,14 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
      * @return The Double found at the given index, or null if the index is out of bounds
      */
     fun getDouble(index: Int): Double? = getValue(index) as? Double
+
+    /**
+     * Grabs a value from this JsonArray and attempts to coerce it to a Double
+     *
+     * @param index The array index to grab the value from
+     * @return The coerced value, or null
+     */
+    fun coerceDouble(index: Int): Double? = Coercers.toDouble(get(index))
 
     /**
      * Gets a Double from this JsonArray
@@ -176,6 +219,16 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
     fun getDouble(index: Int, default: Double): Double = getDouble(index) ?: default
 
     /**
+     * Grabs a value from this JsonArray and attempts to coerce it to a Double
+     * If no value is present, or the value could not be coerced, it will return the provided default
+     *
+     * @param index The array index to grab the value from
+     * @param default The default value to return
+     * @return The coerced value, or default
+     */
+    fun coerceDouble(index: Int, default: Double): Double = coerceDouble(index) ?: default
+
+    /**
      * Gets a String from this JsonArray
      * If the index is out of bounds of the array it will return null
      *
@@ -183,6 +236,15 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
      * @return The String found at the given index, or null if the index is out of bounds
      */
     fun getString(index: Int): String? = getValue(index) as? String
+
+    /**
+     * Grabs a value from this JsonArray and attempts to coerce it to a String
+     * Coercing to a String will only return null if the value is null/not present. All other values are .toString()
+     *
+     * @param index The array index to grab the value from
+     * @return The coerced value, or null
+     */
+    fun coerceString(index: Int): String? = Coercers.toString(get(index))
 
     /**
      * Gets a String from this JsonArray
@@ -193,6 +255,17 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
      * @return The String found at the given index, or default if the value is null or index out of bounds
      */
     fun getString(index: Int, default: String): String = getString(index) ?: default
+
+    /**
+     * Grabs a value from this JsonArray and attempts to coerce it to a String
+     * If no value is present, or the value could not be coerced, it will return the provided default
+     * Coercing to a String will only return null if the value is null/not present. All other values are .toString()
+     *
+     * @param index The array index to grab the value from
+     * @param default The default value to return
+     * @return The coerced value, or default
+     */
+    fun coerceString(index: Int, default: String): String = coerceString(index) ?: default
 
     /**
      * Gets a JsonObject from this JsonArray
@@ -272,6 +345,14 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
     fun getLong(index: Int): Long? = get(index) as? Long
 
     /**
+     * Grabs a value from this JsonArray and attempts to coerce it to a Long
+     *
+     * @param index The array index to grab the value from
+     * @return The coerced value, or null
+     */
+    fun coerceLong(index: Int): Long? = Coercers.toLong(get(index))
+
+    /**
      * Gets the value from the given index if the value is a number
      *
      * @param index The index to pull a value from
@@ -279,6 +360,16 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
      * @return The Float from the given index, default if no value or not a number
      */
     fun getLong(index: Int, default: Long): Long = getLong(index) ?: default
+
+    /**
+     * Grabs a value from this JsonArray and attempts to coerce it to a Long
+     * If no value is present, or the value could not be coerced, it will return the provided default
+     *
+     * @param index The array index to grab the value from
+     * @param default The default value to return
+     * @return The coerced value, or default
+     */
+    fun coerceLong(index: Int, default: Long): Long = coerceLong(index) ?: default
 
     //Other Functions
 
