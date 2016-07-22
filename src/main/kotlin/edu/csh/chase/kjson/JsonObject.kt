@@ -453,14 +453,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param key The key to pull the value from
      * @return The Long from the given key, null if no value or not a number
      */
-    fun getLong(key: String): Long? {
-        val v = get(key)
-        return if (v is Number) {
-            v.toLong()
-        } else {
-            null
-        }
-    }
+    fun getLong(key: String): Long? = get(key) as? Long
 
     /**
      * Gets the value from the given key if the value is a number
@@ -469,14 +462,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param default The default value is no value is found
      * @return The Long from the given key, default if no value or not a number
      */
-    fun getLong(key: String, default: Long): Long {
-        val v = get(key)
-        return if (v is Number) {
-            v.toLong()
-        } else {
-            default
-        }
-    }
+    fun getLong(key: String, default: Long): Long = getLong(key) ?: default
 
     //Other functions
 
