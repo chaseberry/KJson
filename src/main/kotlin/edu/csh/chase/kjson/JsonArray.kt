@@ -21,7 +21,7 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
 
     constructor(tokener: JsonTokener) : this() {
         if (tokener.nextClean() != '[') {
-            throw tokener.syntaxError("A JSONArray text must start with '['")
+            throw tokener.syntaxError("A JSONArray must start with '['")
         }
         if (tokener.nextClean() != ']') {
             tokener.back()

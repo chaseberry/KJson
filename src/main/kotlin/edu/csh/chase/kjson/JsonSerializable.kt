@@ -11,7 +11,7 @@ interface JsonSerializable {
      * Null must be a string of null, ie "null"
      * Anything else should be mapped to a JsonBase and toString()'ed
      *
-     * @return String a valid Json value
+     * @return A valid Json String
      */
     fun jsonSerialize(): String
 
