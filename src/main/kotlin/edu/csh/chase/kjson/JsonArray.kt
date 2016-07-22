@@ -345,6 +345,14 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
     fun getLong(index: Int): Long? = get(index) as? Long
 
     /**
+     * Grabs a value from this JsonArray and attempts to coerce it to a Long
+     *
+     * @param index The array index to grab the value from
+     * @return The coerced value, or null
+     */
+    fun coerceLong(index: Int): Long? = Coercers.toLong(get(index))
+
+    /**
      * Gets the value from the given index if the value is a number
      *
      * @param index The index to pull a value from
@@ -352,6 +360,16 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
      * @return The Float from the given index, default if no value or not a number
      */
     fun getLong(index: Int, default: Long): Long = getLong(index) ?: default
+
+    /**
+     * Grabs a value from this JsonArray and attempts to coerce it to a Long
+     * If no value is present, or the value could not be coerced, it will return the provided default
+     *
+     * @param index The array index to grab the value from
+     * @param default The default value to return
+     * @return The coerced value, or default
+     */
+    fun coerceLong(index: Int, default: Long): Long = coerceLong(index) ?: default
 
     //Other Functions
 
