@@ -1,7 +1,7 @@
 # KJson
 A full Json implementation in Kotlin
 
-Version 0.0.15 for Kotlin 1.0.0
+Version 0.0.16 for Kotlin 1.0.0
 
 To download through Gradle include this in your repositories
 ```Groovy
@@ -12,14 +12,14 @@ maven {
 
 Then add the following to your dependencies
 ```Groovy
-compile 'edu.csh.chase.kjson:kjson:0.0.15'
+compile 'edu.csh.chase.kjson:kjson:0.0.16'
 ```
 
 I will be adding it to JCenter once I'm happy with everything, but for now it's in an early beta stage
 
 #Features
 
-Originally part of Sprint, a Rest Client designed for Kotlin I decided to rip this out and make it it's own separate library
+
 
 ```Kotlin
 
@@ -66,9 +66,9 @@ get<Type>(key:String, default:Type):Type//Returns default if the value is not pr
 
 ```
 
-You can put a Boolean?, Int?, Double?, String?, JsonObject?, JsonArray?, List<Any?>?, and Map<String, Any?>? into either an  array or object.
+You can put a Boolean?, Int?, Double?, String?, Long?, Float?, JsonObject?, JsonArray?, List<Any?>?, and Map<String, Any?>?, or anything that implements JsonSerializable into a JsonObject or Json Array.
 
-Both have support for forEach, iterators, and JsonArray has an indices val
+Both have support for forEach, iterators, and JsonArray has an indices val.
 
 #Traversal
 Lets say you have json structure as such
@@ -82,10 +82,11 @@ Lets say you have json structure as such
 
 ```
 
-Pulling the value out is as easy as
+Depth search for embedded JsonObjects or JsonArrays is done as such
 ```Kotlin
 
 val value = obj.traverse("key:key2")
+val valueAsString = obj.traverseString("key:key2")
 
 ```
 
@@ -101,5 +102,3 @@ var v:Int by JsonDelegates.objectVar(someJsonObject)
 ```
 
 This will use the name as the key in the object, and changes to the key are updated into the JsonObject
-
-*This API is subject to change frequently*
