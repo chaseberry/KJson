@@ -456,6 +456,14 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
     fun getLong(key: String): Long? = get(key) as? Long
 
     /**
+     * Gets the value for the given key and attempts to coerce it into a Long.
+     *
+     * @param key The key to coerce the value from
+     * @return The Long corresponding to the given key, null if there was no value, or it couldn't be coerced
+     */
+    fun coerceLong(key: String): Long? = Coercers.toLong(get(key))
+
+    /**
      * Gets the value from the given key if the value is a number
      *
      * @param key The key to pull a value from
@@ -463,6 +471,16 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @return The Long from the given key, default if no value or not a number
      */
     fun getLong(key: String, default: Long): Long = getLong(key) ?: default
+
+    /**
+     * Gets the value from a given key and attempts to coerce it to a Long
+     * If no value can be found, or coercion fails it will return the default provided
+     *
+     * @param key The key to pull the value from
+     * @param default The default value to return if no value is found, or the coercion fails
+     * @return The coerced value, or default
+     */
+    fun coerceLong(key: String, default: Long): Long = coerceLong(key) ?: default
 
     //Other functions
 
