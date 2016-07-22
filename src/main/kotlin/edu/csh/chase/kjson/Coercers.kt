@@ -16,7 +16,7 @@ object Coercers {
             is Number? -> value?.toInt()
             else -> {
                 try {
-                    value.toString().toInt()
+                    value?.toString()?.toInt()
                 } catch(e: NumberFormatException) {
                     null
                 }
@@ -30,7 +30,7 @@ object Coercers {
             is Number? -> value?.toDouble()
             else -> {
                 try {
-                    value.toString().toDouble()
+                    value?.toString()?.toDouble()
                 } catch(e: NumberFormatException) {
                     null
                 }
@@ -42,6 +42,20 @@ object Coercers {
         return when (value) {
             is String? -> value
             else -> value?.toString()
+        }
+    }
+
+    fun toLong(value: Any?): Long? {
+        return when (value) {
+            is Long? -> value
+            is Number? -> value?.toLong()
+            else -> {
+                try {
+                    value?.toString()?.toLong()
+                } catch(e: NumberFormatException) {
+                    null
+                }
+            }
         }
     }
 
