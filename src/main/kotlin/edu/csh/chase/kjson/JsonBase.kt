@@ -49,9 +49,7 @@ abstract class JsonBase : JsonSerializable {
      * @param compoundKey The compound key to search for
      * @return A boolean if the key resolved or null if the value was not found or not a boolean
      */
-    fun traverseBoolean(compoundKey: String): Boolean? {
-        return traverse(compoundKey) as? Boolean
-    }
+    fun traverseBoolean(compoundKey: String): Boolean? = traverse(compoundKey) as? Boolean
 
     /**
      * Traverses a JsonBase for a Boolean
@@ -60,9 +58,7 @@ abstract class JsonBase : JsonSerializable {
      * @param default A default value
      * @return A boolean if the key resolved or default if the value was not found or not a boolean
      */
-    fun traverseBoolean(compoundKey: String, default: Boolean): Boolean {
-        return traverseBoolean(compoundKey) ?: default
-    }
+    fun traverseBoolean(compoundKey: String, default: Boolean): Boolean = traverseBoolean(compoundKey) ?: default
 
     /**
      * Traverses a JsonBase for an Int?
@@ -70,9 +66,7 @@ abstract class JsonBase : JsonSerializable {
      * @param compoundKey The compound key to search for
      * @return An Int if the key resolved or null
      */
-    fun traverseInt(compoundKey: String): Int? {
-        return traverse(compoundKey) as? Int
-    }
+    fun traverseInt(compoundKey: String): Int? = traverse(compoundKey) as? Int
 
     /**
      * Traverses a JsonBase for an Int
@@ -81,9 +75,7 @@ abstract class JsonBase : JsonSerializable {
      * @param default A default value
      * @return An Int if the key resolved or default if the value was not found or not an Int
      */
-    fun traverseInt(compoundKey: String, default: Int): Int {
-        return traverseInt(compoundKey) ?: default
-    }
+    fun traverseInt(compoundKey: String, default: Int): Int = traverseInt(compoundKey) ?: default
 
     /**
      * Traverses a JsonBase for a Double?
@@ -91,9 +83,7 @@ abstract class JsonBase : JsonSerializable {
      * @param compoundKey The compound key to search for
      * @return A Double if the key resolved or null
      */
-    fun traverseDouble(compoundKey: String): Double? {
-        return traverse(compoundKey) as? Double
-    }
+    fun traverseDouble(compoundKey: String): Double? = traverse(compoundKey) as? Double
 
     /**
      * Traverses a JsonBase for a Double
@@ -102,9 +92,7 @@ abstract class JsonBase : JsonSerializable {
      * @param default A default value
      * @return A Double if the key resolved or default if the value was not found or not a Double
      */
-    fun traverseDouble(compoundKey: String, default: Double): Double {
-        return traverseDouble(compoundKey) ?: default
-    }
+    fun traverseDouble(compoundKey: String, default: Double): Double = traverseDouble(compoundKey) ?: default
 
     /**
      * Traverses a JsonBase for a String?
@@ -112,9 +100,7 @@ abstract class JsonBase : JsonSerializable {
      * @param compoundKey The compound key to search for
      * @return A String if the key resolved or null
      */
-    fun traverseString(compoundKey: String): String? {
-        return traverse(compoundKey) as? String
-    }
+    fun traverseString(compoundKey: String): String? = traverse(compoundKey) as? String
 
     /**
      * Traverses a JsonBase for a String
@@ -123,9 +109,7 @@ abstract class JsonBase : JsonSerializable {
      * @param default A default value
      * @return A String if the key resolved or default if the value was not found or not a String
      */
-    fun traverseString(compoundKey: String, default: String): String {
-        return traverseString(compoundKey) ?: default
-    }
+    fun traverseString(compoundKey: String, default: String): String = traverseString(compoundKey) ?: default
 
     /**
      * Traverses a JsonBase for a JsonObject?
@@ -133,9 +117,7 @@ abstract class JsonBase : JsonSerializable {
      * @param compoundKey The compound key to search for
      * @return A JsonObject if the key resolved or null
      */
-    fun traverseJsonObject(compoundKey: String): JsonObject? {
-        return traverse(compoundKey) as? JsonObject
-    }
+    fun traverseJsonObject(compoundKey: String): JsonObject? = traverse(compoundKey) as? JsonObject
 
     /**
      * Traverses a JsonBase for a JsonObject
@@ -144,9 +126,7 @@ abstract class JsonBase : JsonSerializable {
      * @param default A default value
      * @return A JsonObject if the key resolved or default if the value was not found or not a JsonObject
      */
-    fun traverseJsonObject(compoundKey: String, default: JsonObject): JsonObject {
-        return traverseJsonObject(compoundKey) ?: default
-    }
+    fun traverseJsonObject(compoundKey: String, default: JsonObject): JsonObject = traverseJsonObject(compoundKey) ?: default
 
     /**
      * Traverses a JsonBase for a JsonArray?
@@ -154,9 +134,7 @@ abstract class JsonBase : JsonSerializable {
      * @param compoundKey The compound key to search for
      * @return A JsonArray if the key resolved or null
      */
-    fun traverseJsonArray(compoundKey: String): JsonArray? {
-        return traverse(compoundKey) as? JsonArray
-    }
+    fun traverseJsonArray(compoundKey: String): JsonArray? = traverse(compoundKey) as? JsonArray
 
     /**
      * Traverses a JsonBase for a JsonArray
@@ -165,9 +143,7 @@ abstract class JsonBase : JsonSerializable {
      * @param default A default value
      * @return A JsonArray if the key resolved or default if the value was not found or not a JsonArray
      */
-    fun traverseJsonArray(compoundKey: String, default: JsonArray): JsonArray {
-        return traverseJsonArray(compoundKey) ?: default
-    }
+    fun traverseJsonArray(compoundKey: String, default: JsonArray): JsonArray = traverseJsonArray(compoundKey) ?: default
 
     /**
      * Traverses a JsonBase for a Float?
@@ -200,13 +176,7 @@ abstract class JsonBase : JsonSerializable {
      * @param compoundKey The compound key to search for
      * @return A Long if the key resolved or null
      */
-    fun traverseLong(compoundKey: String): Long? {
-        val num = traverse(compoundKey)
-        if (num is Number) {
-            return num.toLong()
-        }
-        return null
-    }
+    fun traverseLong(compoundKey: String): Long? = traverseLong(compoundKey) as? Long
 
     /**
      * Traverses a JsonBase for a Long
@@ -215,9 +185,7 @@ abstract class JsonBase : JsonSerializable {
      * @param default A default value
      * @return A Long if the key resolved or default if the value was not found or not a Long
      */
-    fun traverseLong(compoundKey: String, default: Long): Long {
-        return traverseLong(compoundKey) ?: default
-    }
+    fun traverseLong(compoundKey: String, default: Long): Long = traverseLong(compoundKey) ?: default
 
     /**
      * Traverses this JsonBase with multiple keys
