@@ -176,7 +176,7 @@ abstract class JsonBase : JsonSerializable {
      * @param compoundKey The compound key to search for
      * @return A Long if the key resolved or null
      */
-    fun traverseLong(compoundKey: String): Long? = traverseLong(compoundKey) as? Long
+    fun traverseLong(compoundKey: String): Long? = traverse(compoundKey) as? Long
 
     /**
      * Traverses a JsonBase for a Long
