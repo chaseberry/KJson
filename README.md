@@ -1,7 +1,7 @@
 # KJson
 A full Json implementation in Kotlin
 
-Version 0.0.16 for Kotlin 1.0.0
+Version 0.0.17 for Kotlin 1.0.0
 
 To download through Gradle include this in your repositories
 ```Groovy
