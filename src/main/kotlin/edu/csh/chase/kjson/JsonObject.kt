@@ -544,7 +544,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
         return other is JsonObject && other.map == map
     }
 
-    override fun jsonSerialize(): String {
+    override fun rawJsonSerialize(): String {
         return this.toString(false)
     }
 

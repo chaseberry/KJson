@@ -15,7 +15,7 @@ import java.util.*
  */
 fun quote(string: String): String {
     val sw = StringWriter()
-    synchronized (sw.buffer) {
+    synchronized(sw.buffer) {
         return quote(string, sw).toString()
     }
 }
@@ -84,7 +84,7 @@ fun Writer.indent(indent: Int) {
  */
 fun Any?.isValidJsonType(): Boolean {
     return this is Boolean? || this is Int? || this is Double? || this is String? || this is Collection<Any?>
-            || this is Map<*, *> || this is JsonSerializable? || this is Float || this is Long
+            || this is Map<*, *> || this is RawJsonSerializable? || this is JsonSerializable? || this is Float || this is Long
 }
 
 internal fun Map<*, *>.jsonMapFilter(filterFun: (Map.Entry<Any?, Any?>) -> (Boolean)): Map<String, Any?> {

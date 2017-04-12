@@ -392,7 +392,7 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
         return index in array.indices
     }
 
-    override fun jsonSerialize(): String {
+    override fun rawJsonSerialize(): String {
         return this.toString(false)
     }
 

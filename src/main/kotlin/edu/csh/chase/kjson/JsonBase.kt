@@ -1,6 +1,6 @@
 package edu.csh.chase.kjson
 
-abstract class JsonBase : JsonSerializable {
+abstract class JsonBase : RawJsonSerializable {
 
     /**
      * A value that equals how large this JsonBase is

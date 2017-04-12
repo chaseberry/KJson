@@ -9,7 +9,8 @@ object JsonValues {
             is Map<*, *> -> JsonObject(value.jsonMapFilter { it.value.isValidJsonType() }).toString(shouldIndent, depth)
             is String -> quote(value)
             is JsonBase -> value.toString(shouldIndent, depth)
-            is JsonSerializable -> value.jsonSerialize()
+            is JsonSerializable -> value.jsonSerialize().toString(shouldIndent, depth)
+            is RawJsonSerializable -> value.rawJsonSerialize()
             else -> value.toString()
         }
     }
