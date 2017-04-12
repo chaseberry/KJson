@@ -490,7 +490,15 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      *
      * @return An immutable map
      */
-    fun getInternalMap(): Map<String, Any?> = Collections.unmodifiableMap(map)
+    fun getInternalMap(): Map<String, Any?> = Collections.unmodifiableMap(map.mapValues {
+        it.value?.let {
+            when (it) {
+                is JsonObject -> it.getInternalMap()
+                is JsonArray -> it.getInternalArray()
+                else -> it
+            }
+        }
+    })
 
     /**
      * Removes a given (key, value) pair from this JsonObject
@@ -556,7 +564,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
 
     override fun toString(shouldIndent: Boolean, depth: Int): String {
         val writer = StringWriter()
-        synchronized (writer.buffer) {
+        synchronized(writer.buffer) {
             return this.write(writer, shouldIndent, depth).toString()
         }
     }

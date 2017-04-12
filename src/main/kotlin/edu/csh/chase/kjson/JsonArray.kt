@@ -378,7 +378,13 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
      *
      * @return An immutable array
      */
-    fun getInternalArray(): List<Any?> = Collections.unmodifiableList(array)
+    fun getInternalArray(): List<Any?> = Collections.unmodifiableList(array.map {
+        when (it) {
+            is JsonObject -> it.getInternalMap()
+            is JsonArray -> it.getInternalArray()
+            else -> it
+        }
+    })
 
     fun remove(index: Int): Any? = array.remove(index)
 
@@ -404,7 +410,7 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
 
     override fun toString(shouldIndent: Boolean, depth: Int): String {
         val sw = StringWriter()
-        synchronized (sw.buffer) {
+        synchronized(sw.buffer) {
             return this.write(sw, shouldIndent, depth).toString()
         }
     }
