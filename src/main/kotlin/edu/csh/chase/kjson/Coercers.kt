@@ -59,4 +59,18 @@ object Coercers {
         }
     }
 
+    fun toFloat(value: Any?): Float? {
+        return when (value) {
+            is Float -> value
+            is Number -> value.toFloat()
+            else -> {
+                try {
+                    value?.toString()?.toFloat()
+                } catch(e: NumberFormatException) {
+                    null
+                }
+            }
+        }
+    }
+
 }
