@@ -311,6 +311,7 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
      * @param index The index to pull the value from
      * @return The Float from the given index, null if no value or not a number
      */
+    @Deprecated(message = "Not parsed", replaceWith = ReplaceWith("coerceFloat(index)"))
     fun getFloat(index: Int): Float? = coerceFloat(index)
 
     /**
@@ -328,6 +329,7 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
      * @param default The default value is no value is found
      * @return The Float from the given index, default if no value or not a number
      */
+    @Deprecated(message = "Not parsed", replaceWith = ReplaceWith("coerceFloat(index, default)"))
     fun getFloat(index: Int, default: Float): Float = coerceFloat(index, default)
 
     /**
@@ -346,6 +348,7 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
      * @param index The index to pull the value from
      * @return The Float from the given index, null if no value or not a number
      */
+    @Deprecated(message = "Not the default parsed number type", replaceWith = ReplaceWith("coerceLong(index)"))
     fun getLong(index: Int): Long? = coerceLong(index)
 
     /**
@@ -363,6 +366,7 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
      * @param default The default value is no value is found
      * @return The Float from the given index, default if no value or not a number
      */
+    @Deprecated(message = "Not the default parsed number type", replaceWith = ReplaceWith("coerceLong(index, default)"))
     fun getLong(index: Int, default: Long): Long = coerceLong(index, default)
 
     /**

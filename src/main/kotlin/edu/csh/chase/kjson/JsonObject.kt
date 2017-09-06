@@ -422,6 +422,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param key The key to pull the value from
      * @return The Float from the given key, null if no value or not a number
      */
+    @Deprecated(message = "Not parsed", replaceWith = ReplaceWith("coerceFloat(key)"))
     fun getFloat(key: String): Float? = coerceFloat(key)
 
     /**
@@ -439,6 +440,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param default The default value is no value is found
      * @return The Float from the given key, default if no value or not a number
      */
+    @Deprecated(message = "Not parsed", replaceWith = ReplaceWith("coerceFloat(key, default)"))
     fun getFloat(key: String, default: Float): Float = coerceFloat(key, default)
 
     /**
@@ -457,6 +459,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param key The key to pull the value from
      * @return The Long from the given key, null if no value or not a number
      */
+    @Deprecated(message = "Not the default parsed number type", replaceWith = ReplaceWith("coerceLong(key)"))
     fun getLong(key: String): Long? = coerceLong(key)
 
     /**
@@ -474,6 +477,7 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      * @param default The default value is no value is found
      * @return The Long from the given key, default if no value or not a number
      */
+    @Deprecated(message = "Not the default parsed number type", replaceWith = ReplaceWith("coerceLong(key, default)"))
     fun getLong(key: String, default: Long): Long = coerceLong(key, default)
 
     /**
