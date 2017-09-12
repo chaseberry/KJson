@@ -127,4 +127,83 @@ class JsonObjectTest() {
 
     }
 
+    @Test fun JsonPutTest1() {
+        val obj = JsonObject()
+        assertEquals(0, obj.size)
+
+        try {
+            obj.put("string", "aString")
+            obj.put("int", 10)
+        } catch(invalidValue: JsonException) {
+            assert(false) { "Invalid value added to JsonObject ${invalidValue.message}" }
+        }
+
+        assertEquals(2, obj.size)
+
+        try {
+            obj.put("double",15.0)
+            obj.put("double",Double.NEGATIVE_INFINITY)
+            assert(false) { "An infinite double was added to a JsonObject" }
+        } catch(invalidDouble: JsonException) {
+
+        }
+
+        assertEquals(15.0, obj["double"] as Double, 0.0)
+
+        try {
+            obj.put("invalidType", "key" to "value")
+            assert(false) { "An invalid type was added to a JsonObject" }
+        } catch(invalidType: JsonException) {
+        }
+
+        assertEquals(3, obj.size)
+
+        try {
+            obj.putNotNull("notNull", "ok")
+            obj.putNotNull("null", null)
+        } catch(invalidValue: JsonException) {
+            assert(false) { "Invalid value added to JsonObject ${invalidValue.message}" }
+        }
+
+        assertEquals(4, obj.size) // only the "notNull" key/value should have been added
+    }
+
+    @Test fun JsonPutTest2() {
+        val obj = JsonObject()
+        assertEquals(0, obj.size)
+
+        try {
+            obj.put("string" to "aString", "int" to 10)
+        } catch(invalidValue: JsonException) {
+            assert(false) { "Invalid value added to JsonObject ${invalidValue.message}" }
+        }
+
+        assertEquals(2, obj.size)
+
+        try {
+            obj.put("double" to 15.0, "double" to Double.NEGATIVE_INFINITY)
+            assert(false) { "An infinite double was added to a JsonObject" }
+        } catch(invalidDouble: JsonException) {
+
+        }
+
+        assertEquals(15.0, obj["double"] as Double, 0.0)
+
+        try {
+            obj.put("invalidType", "key" to "value")
+            assert(false) { "An invalid type was added to a JsonObject" }
+        } catch(invalidType: JsonException) {
+        }
+
+        assertEquals(3, obj.size)
+
+        try {
+            obj.putNotNull("notNull" to "ok", "null" to null)
+        } catch(invalidValue: JsonException) {
+            assert(false) { "Invalid value added to JsonObject ${invalidValue.message}" }
+        }
+
+        assertEquals(4, obj.size) // only the "notNull" key/value should have been added
+    }
+
 }
