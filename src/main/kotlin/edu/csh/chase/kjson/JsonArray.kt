@@ -71,17 +71,32 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
         if (!value.isValidJsonType()) {
             throw JsonException("$value is not a valid JsonException")
         }
-        array [index] = value
+        array[index] = value
     }
 
     //Setters
 
+    /**
+     * Sets a value inside this JsonArray
+     * Will fail silenty if the index is out of bounds
+     *
+     * @param index The index to set the value of
+     * @param value The value to put at the given index
+     *
+     * @throws JsonException if the value is not a valid Json Value
+     */
     fun set(index: Int, value: Any?) {
         setValue(index, value)
     }
 
     //Putters
 
+    /**
+     * Adds one or more values to this JsonArray
+     * Will filter out invalid Json Values
+     *
+     * @param value The value to add
+     */
     fun put(vararg value: Any?): JsonArray {
         value.filter { it.isValidJsonType() }.forEach {
             array.add(it)
@@ -90,6 +105,12 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
         return this
     }
 
+    /**
+     * Adds one or more values to this JsonArray
+     * Will filter out invalid Json Values and values that are null
+     *
+     * @param value The value to add
+     */
     fun putNotNull(vararg value: Any?): JsonArray {
         value.filter { it != null && it.isValidJsonType() }.forEach {
             array.add(it)
