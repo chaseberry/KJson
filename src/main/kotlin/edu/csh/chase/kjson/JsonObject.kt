@@ -180,10 +180,40 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      *
      * @param keyValuePair A Pair<String,Any?> of a key to value
      *
-     * @return JsonObect the JsonObject the pair was put into
+     * @return JsonObject the JsonObject the pair was put into
      */
     fun put(keyValuePair: Pair<String, Any?>): JsonObject {
         return put(keyValuePair.first, keyValuePair.second)
+    }
+
+    /**
+     * Puts from a map of key, value Pairs in the given object
+     * This function can be used to chain calls together for simplicity
+     *
+     * @param map A map of key, value - <String, Any?>
+     *
+     * @return JsonObject the JsonObject the list of pairs was put into
+     */
+    fun put(map: Map<String, Any?>): JsonObject {
+        map.forEach { (key, value) ->
+            put(key, value)
+        }
+        return this
+    }
+
+    /**
+     * Puts from a list of key, value Pairs in the given object
+     * This function can be used to chain calls together for simplicity
+     *
+     * @param elementList A list of key, value Pair<String,Any?>
+     *
+     * @return JsonObject the JsonObject the list of pairs was put into
+     */
+    fun put(vararg elementList: Pair<String, Any?>): JsonObject {
+        elementList.filter { it.second.isValidJsonType() }.forEach {
+            put(it)
+        }
+        return this
     }
 
     /**
@@ -209,10 +239,40 @@ class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
      *
      * @param keyValuePair A Pair<String,Any?> of a key to value
      *
-     * @return JsonObect the JsonObject the pair was put into
+     * @return JsonObject the JsonObject the pair was put into
      */
     fun putNotNull(keyValuePair: Pair<String, Any?>): JsonObject {
         return putNotNull(keyValuePair.first, keyValuePair.second)
+    }
+
+    /**
+     * Puts from a map of key, value Pairs in the given object only if the value is not null
+     * This function can be used to chain calls together for simplicity
+     *
+     * @param map A map of key, value - <String, Any?>
+     *
+     * @return JsonObject the JsonObject the list of pairs was put into
+     */
+    fun putNotNull(map: Map<String, Any?>): JsonObject {
+        map.forEach { (key, value) ->
+            putNotNull(key, value)
+        }
+        return this
+    }
+
+    /**
+     * Puts from a list of key, value Pairs in the given object only if the value is not null
+     * This function can be used to chain calls together for simplicity
+     *
+     * @param elementList A list of key, value Pair<String,Any?>
+     *
+     * @return JsonObject the JsonObject the list of pairs was put into
+     */
+    fun putNotNull(vararg elementList: Pair<String, Any?>): JsonObject {
+        elementList.filter { it.second.isValidJsonType() }.forEach {
+            putNotNull(it)
+        }
+        return this
     }
 
     //Getters
