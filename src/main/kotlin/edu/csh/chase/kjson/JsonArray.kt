@@ -82,19 +82,20 @@ class JsonArray() : JsonBase(), Iterable<Any?> {
 
     //Putters
 
-    fun put(value: Any?): JsonArray {
-        if (!value.isValidJsonType()) {
-            throw JsonException("$value is not a valid JsonException")
+    fun put(vararg value: Any?): JsonArray {
+        value.filter { it.isValidJsonType() }.forEach {
+            array.add(it)
         }
-        array.add(value)
+
         return this
     }
 
-    fun putNotNull(value: Any?): JsonArray {
-        if (value == null) {
-            return this
+    fun putNotNull(vararg value: Any?): JsonArray {
+        value.filter { it != null && it.isValidJsonType() }.forEach {
+            array.add(it)
         }
-        return put(value)
+
+        return this
     }
 
     //Getters
