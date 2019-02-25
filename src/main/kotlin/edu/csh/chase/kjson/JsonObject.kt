@@ -7,7 +7,7 @@ import java.util.*
 
 class JsonObject() : JsonBase(), Iterable<Map.Entry<String, Any?>> {
 
-    private val map = HashMap<String, Any?>()
+    private val map = LinkedHashMap<String, Any?>()
 
     /**
      * The number of key, value pairs this JsonObject currently holds
