@@ -20,7 +20,7 @@ object JsonValues {
             "false" -> return false
             "null" -> return null
         }
-        if ((value[0] in '0'..'9') || value[0] == '-') {
+        if ((value.firstOrNull() in '0'..'9') || value.firstOrNull() == '-') {
             try {
                 //Is it a Double?
                 if (value.contains('.') || value.contains('e') || value.contains('E')) {
