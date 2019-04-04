@@ -1,4 +1,4 @@
-def $versionNumber = '0.0.21'//Current uploaded version
+def $versionNumber = '0.0.22'//Current uploaded version
 
 group 'edu.csh.chase.kjson'
 version $versionNumber
