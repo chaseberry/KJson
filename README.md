@@ -3,10 +3,13 @@ A full Json implementation in Kotlin
 
 Version 0.0.22 for Kotlin 1.1.0
 
+## Gradle
+[![This version of 'sprint' @ Cloudsmith](https://api-prd.cloudsmith.io/v1/badges/version/chase-s-projects/sprint/maven/sprint/0.1.9/a=noarch;xg=edu.csh.chase.sprint/?render=true)](https://cloudsmith.io/~chase-s-projects/repos/sprint/packages/detail/maven/sprint/0.1.9/a=noarch;xg=edu.csh.chase.sprint/)
+
 To download through Gradle include this in your repositories
 ```Groovy
 maven {
-        url  "http://dl.bintray.com/chaseberry/maven" 
+        url  "https://dl.cloudsmith.io/public/chase-s-projects/kjson/maven/" 
     }
 ```
 
