@@ -4,7 +4,7 @@ A full Json implementation in Kotlin
 Version 0.0.22 for Kotlin 1.1.0
 
 ## Gradle
-[![This version of 'sprint' @ Cloudsmith](https://api-prd.cloudsmith.io/v1/badges/version/chase-s-projects/sprint/maven/sprint/0.1.9/a=noarch;xg=edu.csh.chase.sprint/?render=true)](https://cloudsmith.io/~chase-s-projects/repos/sprint/packages/detail/maven/sprint/0.1.9/a=noarch;xg=edu.csh.chase.sprint/)
+[![Latest version of 'kjson' @ Cloudsmith](https://api-prd.cloudsmith.io/v1/badges/version/chase-s-projects/kjson/maven/kjson/latest/a=noarch;xg=edu.csh.chase.kjson/?render=true&show_latest=true)](https://cloudsmith.io/~chase-s-projects/repos/kjson/packages/detail/maven/kjson/latest/a=noarch;xg=edu.csh.chase.kjson/)
 
 To download through Gradle include this in your repositories
 ```Groovy
